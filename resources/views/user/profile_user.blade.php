@@ -14,10 +14,10 @@
     <link href="{{('public/frontend/css/font-awesome.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/flaticon.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/slick-slider.cs')}}s" rel="stylesheet">
-    <link href="{{('public/frontend/plugin-css/fancybox.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/plugin-css/plugin.css')}}" rel="stylesheet">
+    <link href="{{('public/frontend/css/fancybox.css')}}" rel="stylesheet">
+    <link href="{{('public/frontend/css/plugin.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/color.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/style.css')}}" rel="stylesheet">
+    <link href="{{('public/frontend/css/style.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese" rel="stylesheet">
     
@@ -38,7 +38,7 @@
         <header id="careerfy-header" class="careerfy-header-one">
             <div class="container">
                 <div class="row">
-                    <aside class="col-md-2"> <a href="index-2.html" class="careerfy-logo"><img src="images/logo.png" alt=""></a> </aside>
+                    <aside class="col-md-2"> <a href="index-2.html" class="careerfy-logo"><img src="public/frontend/images/logo.png" alt=""></a> </aside>
                     <aside class="col-md-6">
                         <nav class="careerfy-navigation">
                             <div class="navbar-header">
@@ -177,7 +177,7 @@
                             <div class="careerfy-typo-wrap">
                                 <div class="careerfy-employer-dashboard-nav">
                                     <figure>
-                                        <a href="#" class="employer-dashboard-thumb"><img src="extra-images/candidate-dashboard-navthumb.jpg" alt=""></a>
+                                        <a href="#" class="employer-dashboard-thumb"><img src="public/frontend/images/candidate-dashboard-navthumb.jpg" alt=""></a>
                                         <figcaption>
                                             <div class="careerfy-fileUpload">
                                                 <span><i class="careerfy-icon careerfy-add"></i> Upload Photo</span>
@@ -395,7 +395,7 @@
                     <div class="row">
                         <aside class="widget col-md-4 widget_contact_info">
                             <div class="widget_contact_wrap">
-                                <a class="careerfy-footer-logo" href="index-2.html"><img src="images/footer-logo.png" alt=""></a>
+                                <a class="careerfy-footer-logo" href="index-2.html"><img src="public/frontend/images/footer-logo.png" alt=""></a>
                                 <p>Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque volutpat odio eget diam cursus semper. Sed coquat sapien faucibus quam.</p>
                                 <a href="#" class="careerfy-classic-btn careerfy-bgcolor">Learn more</a>
                             </div>
@@ -589,7 +589,7 @@
                                 </div>
                             </li>
                             <li class="careerfy-user-form-coltwo-full">
-                                <img src="extra-images/login-robot.png" alt="">
+                                <img src="public/frontend/images/login-robot.png" alt="">
                             </li>
                             <li class="careerfy-user-form-coltwo-full">
                                 <input type="submit" value="Sign Up">

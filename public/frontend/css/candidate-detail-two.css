@@ -1,7 +1,7 @@
 .candidate-detail-two-subheader {
 	float: left;
 	width: 100%;
-	background: url(../extra-images/candidate-detail-two-2.jpg);
+	background: url(../public/frontend/images/candidate-detail-two-2.jpg);
 	position: relative;
 	padding: 70px 0px 21px 0px;
 }

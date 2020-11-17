@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
 <head>
-<title>Đăng ký thành viên</title>
+<title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Login :: w3layouts</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -27,21 +27,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{('public/backend/js/jquery2.0.3.min.js')}}"></script>
 </head>
 <body>
-<div class="reg-w3">
+<div class="log-w3">
 <div class="w3layouts-main">
-	<h2>Đăng ký ngay</h2>
-		<form action="dangky" method="post">
-			<input type="hidden" name="_token" value="{{csrf_token()}}" />
-			<input type="text" class="ggg" name="user_name" placeholder="Nhập tên" required="">
-			<input type="email" class="ggg" name="user_email" placeholder="Nhập email" required="">
-			<input type="text" class="ggg" name="user_phone" placeholder="Nhập số điện thoại" required="">
-			<input type="password" class="ggg" name="user_password" placeholder="Nhập mật khẩu" required="">
-			<h4><input type="checkbox" />Tôi đồng ý với các điều khoản</h4>
+	<h2>Đăng nhập ngay</h2>
+		<form action="#" method="get">
 			
 				<div class="clearfix"></div>
-				<input type="submit" value="ĐĂNG KÝ" name="register">
+				<h2><a href="{{URL::to('/dangnhap-ntd')}}">Tôi là nhà tuyển dụng</a><h2>
+				<h2><a href="{{URL::to('/dangnhap-uv')}}">Tôi là ứng viên</a></h2>
 		</form>
-		<p><a href="{{URL :: TO('/user')}}">Đăng nhập</a></p>
+		
 </div>
 </div>
 <script src="{{('public/backend/js/bootstrap.js')}}"></script>

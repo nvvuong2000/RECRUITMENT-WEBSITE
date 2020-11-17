@@ -437,7 +437,7 @@ address                         { font-style: italic; }
 .careerfy-banner {
     float: left;
     width: 100%;
-    background: url(extra-images/banner-bg.jpg);
+    background: url(../public/frontend/images/banner-bg.jpg);
     position: relative;
     padding: 138px 0px 139px 0px;
 }

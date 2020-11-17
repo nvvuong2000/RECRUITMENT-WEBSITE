@@ -1,23 +1,43 @@
-@extends('layouts.app')
+@extends('home_layout')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@section('home_content')
+<!-- Main Section -->
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+            <div class="careerfy-main-section">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-12 careerfy-typo-wrap">
+                           
+                            <!-- Categories -->
+                            <div class="categories-list">
+
+                                <ul class="careerfy-row">
+                                    @foreach($loainganhnghe as $key => $loai)
+                                    <li class="careerfy-column-3">
+                                        <i class="careerfy-icon careerfy-engineer"></i>
+                                        <a href="#">{{$loai->nganhnghe_name}}</a>
+                                        <span>(15 Open Vacancies)</span>
+                                    </li>
+                                    @endforeach     
+                                    </ul>
+                            </div>
+                          
+                            <!-- Categories -->
                         </div>
-                    @endif
 
-                    {{ __('You are logged in!') }}
+                    </div>
                 </div>
             </div>
+
+            <!-- Main Section -->
+                 <!-- Main Section -->
+        
+
+            
+          
+
         </div>
-    </div>
-</div>
+        <!-- Main Content -->
+
 @endsection
