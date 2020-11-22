@@ -52,7 +52,6 @@
                         </figure>
                         <ul>
                             <li class="active"><a href="{{URL::to('/thongtin-doanhnghiep')}}"></i> Thông tin doanh nghiệp</a></li>
-                            <!-- <li  ><a href="{{URL::to('/quan-li-ho-so')}}"></i> Quản lí hồ sơ</a></li> -->
                             <li><a href="{{URL::to('/danh-sach-ung-tuyen/'.$_SESSION['id'])}}"> Danh sách ứng tuyển</a></li>
                             <li><a href="{{URL::to('/dangtuyen-nhanvien')}}"> Đăng tuyển nhân viên</a></li>
                             <li><a href="{{URL::to('/quanly-tintuyendung')}}">Quản lý tin tuyển dụng</a></li>
@@ -68,10 +67,11 @@
                     <div class="careerfy-employer-dasboard">
                         <form action="{{url::to('/luu-tintuyendung')}}" method="post">
                             {{csrf_field()}}
+                            <input type="hidden" name="id_tintuyendung" value="{{$id}}" />
                             <div class="careerfy-employer-box-section">
                                 <!-- Profile Title -->
                                 <div class="careerfy-profile-title">
-                                    <h2>Đăng tuyển công việc</h2>
+                                    <h2>Cập nhật công việc</h2>
                                     <?php
 
                                     $message = Session::get('message');
@@ -81,31 +81,32 @@
                                     }
 
                                     // echo $suatintd;
+                                    echo $chitiet_tintd
                                     ?>
                                 </div>
                                 <!-- New Job -->
 
-
+                                @foreach($chitiet_tintd as $key => $td)
                                 <ul class="careerfy-row careerfy-employer-profile-form">
                                     <li class="careerfy-column-6">
 
                                         <label>Tiêu đề cho công việc</label>
-                                        <input name="tieude" value="" type="text">
+                                        <input name="tieude" value="{{$td->tieude}}" type="text">
 
 
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Thời hạn nộp hồ sơ</label>
-                                        <input name="thoihan" value="" type="text">
+                                        <input name="thoihan" value="{{$td->hannophoso}}" type="text">
                                     </li>
                                     <li class="careerfy-column-12">
                                         <label>Mô tả công việc *</label>
-                                        <textarea name="mota"></textarea>
+                                        <textarea name="mota" value="{{$td->mota}}"></textarea>
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Địa chỉ email</label>
                                         <div class="careerfy-profile-select">
-                                            <input name=email type="email" />
+                                            <input name=email type="email" value="{{$td->email}}" />
                                         </div>
                                     </li>
 
@@ -113,18 +114,33 @@
                                         <label>Loại ngành nghề</label>
                                         <div class="careerfy-profile-select">
                                             <select name="loai">
+
                                                 @foreach($loainganhnghe as $key =>$nganhnghe)
-                                                <option value="{{$nganhnghe->nganhnghe_id}}">{{$nganhnghe->nganhnghe_name}}</option>
+                                                <!-- <option value="{{$nganhnghe->nganhnghe_id}}">{{$nganhnghe->nganhnghe_name}}</option> -->
+
+                                                <option value="{{$nganhnghe->nganhnghe_id}}" <?php
+                                                                                                if ($nganhnghe->nganhnghe_id == $td->id_loainganhnghe) {
+                                                                                                    echo 'selected';
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>>{{$nganhnghe->nganhnghe_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </li>
                                     <li class="careerfy-column-6">
+
                                         <label>Hình thức làm việc</label>
                                         <div class="careerfy-profile-select">
                                             <select name="hinhthuc">
                                                 @foreach($hinhthuclamviec as $key =>$hinhthuc)
-                                                <option value="{{$hinhthuc->hinhThuc_id}}">{{$hinhthuc->hinhThuc_name}}</option>
+
+                                                <option value="{{$hinhthuc->hinhThuc_id}}" <?php
+                                                                                            if ($hinhthuc->hinhThuc_id == $td->id_hinhthuclamviec) {
+                                                                                                echo 'selected';
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>>{{$hinhthuc->hinhThuc_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -133,8 +149,14 @@
                                         <label>Chức vụ</label>
                                         <div class="careerfy-profile-select">
                                             <select name="chucvu">
+
                                                 @foreach($chucvu as $key =>$chucvu)
-                                                <option value="{{$chucvu->chucvu_id}}">{{$chucvu->chucvu_ten}}</option>
+                                                <option value="{{$chucvu->chucvu_id}}" <?php
+                                                                                        if ($chucvu->chucvu_id == $td->id_chucvu) {
+                                                                                            echo 'selected';
+                                                                                        } else {
+                                                                                            echo '';
+                                                                                        } ?>>{{$chucvu->chucvu_ten}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -154,7 +176,18 @@
                                         <div class="careerfy-profile-select">
                                             <select name="mucluong">
                                                 @foreach($mucluong as $key =>$mucluong)
-                                                <option value="{{$mucluong->mucluong_id}}">{{$mucluong->mucluong_name}}</option>
+                                                <?php
+                                                if ($mucluong->mucluong_id == $td->id_mucluong) {
+                                                    echo 'selected';
+                                                } else {
+                                                    echo '';
+                                                } ?>
+                                                <option value="{{$mucluong->mucluong_id}}" <?php
+                                                                                            if ($mucluong->mucluong_id == $td->id_mucluong) {
+                                                                                                echo 'selected';
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>>{{$mucluong->mucluong_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -164,8 +197,14 @@
                                         <label>Kinh nghiệm</label>
                                         <div class="careerfy-profile-select">
                                             <select name="kinhnghiem">
+
                                                 @foreach($kinhnghiem as $key =>$kinhnghiem)
-                                                <option value="{{$kinhnghiem->kinhnghiem_id}}">{{$kinhnghiem->kinhnghiem_name}}</option>
+                                                <option value="{{$kinhnghiem->kinhnghiem_id}}" <?php
+                                                                                                if ($kinhnghiem->kinhnghiem_id == $td->id_kinhnghiem) {
+                                                                                                    echo 'selected';
+                                                                                                } else {
+                                                                                                    echo '';
+                                                                                                } ?>>{{$kinhnghiem->kinhnghiem_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -175,7 +214,13 @@
                                         <div class="careerfy-profile-select">
                                             <select name="bangcap">
                                                 @foreach($bangcap as $key =>$bangcap)
-                                                <option value="{{$bangcap->bangcap_id}}">{{$bangcap->bangcap_ten}}</option>
+
+                                                <option value="{{$bangcap->bangcap_id}}" <?php
+                                                                                            if ($bangcap->bangcap_id == $td->id_bangcap) {
+                                                                                                echo 'selected';
+                                                                                            } else {
+                                                                                                echo '';
+                                                                                            } ?>>{{$bangcap->bangcap_ten}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -186,20 +231,20 @@
                                         <div class="careerfy-profile-select">
                                             <select name="tinhthanh">
                                                 @foreach($tinhthanh as $key =>$tinhthanh)
-                                                <option value="{{$tinhthanh->tinhthanh_id}}">{{$tinhthanh->tinhthanh_name}}</option>
+                                                <option value="{{$tinhthanh->tinhthanh_id}}" selected=" <?php $tinhthanh->tinhthanh_id == $td->id_tinhthanh ? 'selected' : ''; ?>">{{$tinhthanh->tinhthanh_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Số lượng tuyển</label>
-                                        <input name="soluong" value="" type="text">
+                                        <input name="soluong" value="{{$td->soluong}}" type="text">
                                     </li>
 
                                     <li class="careerfy-column-10">
                                         <label>Địa chỉ </label>
                                         <div class="careerfy-profile-select">
-                                            <input name="diachi" type="text" />
+                                            <input name="diachi" type="text" value="{{$td->diachi}}" />
                                         </div>
                                     </li>
                                     <li class="careerfy-column-2">
@@ -207,7 +252,7 @@
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Latitude</label>
-                                        <input value="51.4935825" onblur="if(this.value == '') { this.value ='51.4935825'; }" onfocus="if(this.value =='51.4935825') { this.value = ''; }" type="text">
+                                        <input value="" type="text">
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Longitude</label>
@@ -218,10 +263,10 @@
                                         <span class="careerfy-short-message">For the precise location, you can drag and drop the pin.</span>
                                     </li>
                                 </ul>
-
+                                @endforeach
                             </div>
 
-                            <input type="submit" class="careerfy-employer-profile-submit" value="Thêm tin tuyển dụng">
+                            <input type="submit" class="careerfy-employer-profile-submit" value="Cập nhật tin tuyển dụng">
                         </form>
                     </div>
                 </div>

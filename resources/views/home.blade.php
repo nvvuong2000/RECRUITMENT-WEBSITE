@@ -16,7 +16,7 @@
                                     @foreach($loainganhnghe as $key => $loai)
                                     <li class="careerfy-column-3">
                                         <i class="careerfy-icon careerfy-engineer"></i>
-                                        <a href="#">{{$loai->nganhnghe_name}}</a>
+                                        <a href="{{URL ::to('/loai/'.$loai->nganhnghe_id)}}">{{$loai->nganhnghe_name}}</a>
                                         <span>(15 Open Vacancies)</span>
                                     </li>
                                     @endforeach     
