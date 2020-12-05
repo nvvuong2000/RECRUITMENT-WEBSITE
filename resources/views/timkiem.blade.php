@@ -25,7 +25,7 @@
                                         <div class="careerfy-list-option">
                                             <h2><a href="{{URL ::to('/chitiet-tintuyendung/'.$chitiet->id_tintuyendung)}}">{{$chitiet->TieuDe}}</a>
                                                 <ul>
-                                                    <li><a href="#">@ {{$chitiet->tendoanhnghiep}}</a>
+                                                    <li><a href="{{URL::to('/thongtin-doanhnghiep/'.$chitiet->id_doanhnghiep)}}">@ {{$chitiet->tendoanhnghiep}}</a>
                                                     </li>
                                                     <li><i class="careerfy-icon careerfy-maps-and-flags"></i> {{$chitiet->diachi}}</li>
                                                     <li><i class="careerfy-icon careerfy-filter-tool-black-shape"></i> {{$chitiet->nganhnghe_name}}</li>

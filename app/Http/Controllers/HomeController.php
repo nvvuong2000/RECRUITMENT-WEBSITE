@@ -28,7 +28,7 @@ class HomeController extends Controller
 
             ->select(DB::raw('id_loainganhnghe,nganhnghe_name,class,count(id_loainganhnghe) as count'))
             ->join('tbl:loainganhnghe', 'tbl:loainganhnghe.nganhnghe_id', '=', 'tintuyendung.id_loainganhnghe')
-            ->groupBy('id_loainganhnghe', 'class', 'nganhnghe_name',)
+            ->groupBy('id_loainganhnghe', 'class', 'nganhnghe_name')
             ->get();
         return view('home')->with('loainganhnghe', $loainganhnghe)->with('tinhthanh', $tinhthanh)->with('filter', $filter);
     }
@@ -41,7 +41,7 @@ class HomeController extends Controller
             ->select(DB::raw('id_loainganhnghe,nganhnghe_name,class,count(id_loainganhnghe) as count'))
             ->join('tbl:loainganhnghe', 'tbl:loainganhnghe.nganhnghe_id', '=', 'tintuyendung.id_loainganhnghe')
             // ->where('status', '<>', 1)
-            ->groupBy('id_loainganhnghe', 'class', 'nganhnghe_name',)
+            ->groupBy('id_loainganhnghe', 'class', 'nganhnghe_name')
             ->get();
 
 
@@ -97,30 +97,25 @@ class HomeController extends Controller
                 'tintuyendung.id_bangcap'
             );
 
-            if($keyword !=''){
-                 $chitiet_tintd = $chitiet_tintd
-            ->where('tieude', 'like', '%' . $keyword . '%')->get();
-            }
-        elseif ($request->tinh != 0 && $request->nganh != 0 && $keyword != '') {
+        if ($keyword != '') {
+            $chitiet_tintd = $chitiet_tintd
+                ->where('tieude', 'like', '%' . $keyword . '%')->get();
+        } elseif ($request->tinh != 0 && $request->nganh != 0 && $keyword != '') {
             $chitiet_tintd = $chitiet_tintd
                 ->where('id_tinhthanh', '=',  $request->tinh)
                 ->where('tintuyendung.id_loainganhnghe', '=', $request->nganh)->get();
-          
         } elseif ($request->nganh == 0) {
             $chitiet_tintd = $chitiet_tintd
                 ->where('id_tinhthanh', '=',  $request->tinh)->get();
-               
         } elseif ($request->tinh == 0) {
             $chitiet_tintd = $chitiet_tintd
                 ->where('tintuyendung.id_loainganhnghe', '=', $request->nganh)->get();
-               
-        
         }
         $total = count(get_object_vars($chitiet_tintd));
 
 
 
-        return view('timkiem')->with('chitiet_tintd', $chitiet_tintd)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe)->with('total',$total);
+        return view('timkiem')->with('chitiet_tintd', $chitiet_tintd)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe)->with('total', $total);
     }
     public function filter($id)
     {
@@ -175,9 +170,7 @@ class HomeController extends Controller
                     ->where('user_id', $id)
                     ->update(['user_matkhau' => password_hash($confirm, PASSWORD_DEFAULT)]);
                 return Redirect::to('/dang-xuat');
-           
             } else {
-
             }
         }
     }

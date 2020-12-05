@@ -40,7 +40,7 @@ class DoanhNghiepController extends Controller
 				'tendoanhnghiep',
 				'diachi',
 				'doanhnghiep_email',
-				'id_loainganhnghe',
+				'id_loainganhnghe'
 			)->where('doanhnghiep_id', $id)->get();
 			$user = DB::table('tbl:user')->where('tbl:user.user_id', $_SESSION["id"])->get();
 			return view('nhatuyendung.thongtinnhatuyendung')->with('dn', $dn)->with('user', $user)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);
@@ -65,7 +65,7 @@ class DoanhNghiepController extends Controller
 				'tendoanhnghiep',
 				'diachi',
 				'doanhnghiep_email',
-				'id_loainganhnghe',
+				'id_loainganhnghe'
 			)->where('doanhnghiep_id', $id)->get();
 			return view('nhatuyendung.thongtinnhatuyendung')->with('dn', $dn)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);;
 		} else {
@@ -85,7 +85,7 @@ class DoanhNghiepController extends Controller
 				'tendoanhnghiep',
 				'diachi',
 				'doanhnghiep_email',
-				'id_loainganhnghe',
+				'id_loainganhnghe'
 			)->where('doanhnghiep_id', $id)->get();
 			$loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
 			$user = DB::table('tbl:user')->where('tbl:user.user_id', $id)->get();
@@ -117,7 +117,7 @@ class DoanhNghiepController extends Controller
 				'tendoanhnghiep',
 				'diachi',
 				'doanhnghiep_email',
-				'id_loainganhnghe',
+				'id_loainganhnghe'
 			)->where('doanhnghiep_id', $id)->get();
 			$user = DB::table('tbl:user')->where('tbl:user.user_id', $_SESSION["id"])->get();
 			return view('nhatuyendung.capnhatnhatuyendung')->with('dn', $dn)->with('user', $user)->with('loainganhnghe', $loainganhnghe)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);;
@@ -248,8 +248,8 @@ class DoanhNghiepController extends Controller
 				->join('tbl:user', 'tbl:user.user_id', '=', 'cv.ungvien_id')
 				->where('cv.ungvien_id', $_SESSION["id"])->get();
 			$user = DB::table('tbl:user')->where('tbl:user.user_id', $_SESSION["id"])->get();
-	
-	
+
+
 			return view('user.quanlihoso')->with('cv', $cv)->with('user', $user)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);;
 		}
 	}
