@@ -146,10 +146,10 @@ class DoanhNghiepController extends Controller
 					Session::put('message', 'Thông tin không được trống');
 					return Redirect::to('/capnhat-doanhnghiep')->with('message', Session::get('message'));
 				}
-				if (!$check->checkFullName($Request->ten)) {
-					Session::put('message', 'Họ tên tài khoản không hợp lệ');
-					return Redirect::to('/capnhat-doanhnghiep')->with('message', Session::get('message'));
-				}
+				// if (!$check->checkFullName($Request->ten)) {
+				// 	Session::put('message', 'Họ tên tài khoản không hợp lệ');
+				// 	return Redirect::to('/capnhat-doanhnghiep')->with('message', Session::get('message'));
+				// }
 				if (!$check->checkTel($Request->sdt)) {
 					Session::put('message', 'Số điện thoại không hợp lệ');
 					return Redirect::to('/capnhat-doanhnghiep')->with('message', Session::get('message'));
@@ -439,8 +439,7 @@ class DoanhNghiepController extends Controller
 				'',
 				$Request->user_ngaysinh
 			));
-			//    echo $str = ;
-			// echo strtotime($time);
+
 			$newformat = date('d-m-Y', $time);
 			$today_dt = new DateTime($today);
 			$expire_dt = new DateTime($newformat);

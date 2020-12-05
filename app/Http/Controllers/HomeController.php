@@ -74,10 +74,7 @@ class HomeController extends Controller
     {
         $keyword = $request->keyword;
         $doanhnghiep = DB::table('tbl:doanhnghiep')->orderby('doanhnghiep_id', 'desc')->get();
-        // $bangcap = DB::table('tbl:bangcap')->orderby('bangcap_id', 'desc')->get();
-        // $chucvu = DB::table('tbl:chucvu')->orderby('chucvu_id', 'desc')->get();
-        // $kinhnghiem = DB::table('tbl:kinhnghiem')->orderby('kinhnghiem_id', 'desc')->get();
-        // $mucluong = DB::table('tbl:mucluong')->orderby('mucluong_id', 'desc')->get();
+
         $hinhthuclamviec = DB::table('tbl:hinhthuclamviec')->orderby('hinhThuc_id', 'desc')->get();
         $loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
         $tinhthanh = DB::table('tbl:tinhthanh')->orderby('tinhthanh_id', 'desc')->get();
@@ -85,9 +82,7 @@ class HomeController extends Controller
             ->join('tbl:loainganhnghe', 'tbl:loainganhnghe.nganhnghe_id', '=', 'tintuyendung.id_loainganhnghe')
             ->join('tbl:doanhnghiep', 'tbl:doanhnghiep.doanhnghiep_id', '=', 'tintuyendung.id_doanhnghiep')
             ->join('tbl:user', 'tbl:user.user_id', '=', 'tbl:doanhnghiep.doanhnghiep_id')
-            // ->join('tbl:mucluong', 'tbl:mucluong.mucluong_id', '=', 'tintuyendung.id_mucluong')
             ->join('tbl:hinhthuclamviec', 'tbl:hinhthuclamviec.hinhThuc_id', '=', 'tintuyendung.id_hinhthuclamviec')
-            // ->join('tbl:kinhnghiem', 'tbl:kinhnghiem.kinhnghiem_id', '=', 'tintuyendung.id_kinhnghiem')
             ->join(
                 'tbl:chucvu',
                 'tbl:chucvu.chucvu_id',
@@ -101,7 +96,7 @@ class HomeController extends Controller
                 '=',
                 'tintuyendung.id_bangcap'
             );
-        // ->where('tieude', 'like', '%' . $keyword . '%');
+
             if($keyword !=''){
                  $chitiet_tintd = $chitiet_tintd
             ->where('tieude', 'like', '%' . $keyword . '%')->get();
@@ -180,9 +175,9 @@ class HomeController extends Controller
                     ->where('user_id', $id)
                     ->update(['user_matkhau' => password_hash($confirm, PASSWORD_DEFAULT)]);
                 return Redirect::to('/dang-xuat');
-                // Session::put('message', 'Doi mat khau thanh cong');
+           
             } else {
-                // Session::put('message', 'co loi');
+
             }
         }
     }

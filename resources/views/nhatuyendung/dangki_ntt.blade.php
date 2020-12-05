@@ -88,7 +88,7 @@
                             <div class="form-row">
                                 <div class="form-group form-icon">
                                     <label for="birth_date">Ngày sinh</label>
-                                    <input type="text" class="form-input" name="user_ngaysinh" id="birth_date" placeholder="MM-DD-YYYY" />
+                                    <input type="date" class="form-input" name="user_ngaysinh" id="birth_date" />
                                 </div>
                                 <div class="form-radio">
                                     <label for="gender">Giới tính</label>
@@ -173,40 +173,32 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <!-- </div> -->
-                            <!-- </div> -->
                             <div class="form-group">
                                 <input type="submit" name="submit" id="submit" class=" btn btn-primary btn-block waves-effect waves-light form-submit" value="Submit" />
                             </div>
                         </form>
                         <div class="mt-4 text-center" style="margin-top: 32px;">
-                            <!-- <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p> -->
+                            
                         </div>
                     </div>
 
                 </div>
             </div>
             <div class="mt-4 text-center" style="margin-top: 32px;">
-                <!-- <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p> -->
+                
             </div>
             <div class="mt-5 text-center">
 
                 <div>
                     <p>Đã có tài khoản ? <a href="{{URL :: to('/dang-nhap')}}" class="font-weight-medium text-primary"> Đăng nhập</a> </p>
                     <p> Đăng kí với tư cách ứng viên ? <a href="{{URL :: to('/dang-ki-uv')}}" class="font-weight-medium text-primary"> Đăng kí</a> </p>
-                    <!-- <p>© 2020 Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p> -->
+                    
                 </div>
             </div>
 
     </div>
 
 
-    <!-- </div>
-                    </div>
-                    </section>
-
-                </div> -->
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

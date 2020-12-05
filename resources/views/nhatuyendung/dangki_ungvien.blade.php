@@ -42,7 +42,7 @@
 
         <section class="signup">
 
-            <div class="container" style="    width: 600px;"> 
+            <div class="container" style="    width: 600px;">
                 <div class="bg-soft-primary">
 
                     <div class="row">
@@ -87,7 +87,7 @@
                             <div class="form-row">
                                 <div class="form-group form-icon">
                                     <label for="birth_date">Ngày sinh</label>
-                                    <input type="text" class="form-input" name="user_ngaysinh" id="birth_date" placeholder="MM-DD-YYYY" require />
+                                    <input type="date" class="form-input" name="user_ngaysinh" id="birth_date"  require />
                                 </div>
                                 <div class="form-radio">
                                     <label for="gender">Giới tính</label>
@@ -117,98 +117,91 @@
                             <!-- <div class="form-text">
                                 <a href="#" class="add-info-link"><i class="zmdi zmdi-chevron-right"></i>Thông tin ứng viên</a>
                                 <div class="add_info"> -->
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-input" name="user_email" id="email" require />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="diachi">Địa chỉ</label>
-                                        <input type="text" class="form-input" name="user_diachi" id="email" require />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="country">Thành phố</label>
-                                        <div class="select-list">
-                                            <select name="thanhpho_id">
-                                                @foreach($tinhthanh as $key =>$tinhthanh)
-                                                <option value="{{$tinhthanh->tinhthanh_id}}">{{$tinhthanh->tinhthanh_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="country">Ngành nghề</label>
-                                        <div class="select-list">
-                                            <select name="nganhnghe_id">
-                                                @foreach($loainganhnghe as $key =>$nganhnghe)
-                                                <option value="{{$nganhnghe->nganhnghe_id}}">{{$nganhnghe->nganhnghe_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="city">Kinh nghiệm</label>
-                                        <div class="select-list">
-                                            <select name="id_kinhnghiem" require>
-                                                @foreach($kinhnghiem as $key =>$kinhnghiem)
-                                                <option value="{{$kinhnghiem->kinhnghiem_id}}">{{$kinhnghiem->kinhnghiem_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="city">Bằng cấp</label>
-                                        <div class="select-list">
-                                            <select name="id_bangcap">
-                                                @foreach($bangcap as $key =>$bangcap)
-                                                <option value="{{$bangcap->bangcap_id}}">{{$bangcap->bangcap_ten}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="city">Hình thức</label>
-                                        <div class="select-list">
-                                            <select name="hinhthuc_id" require>
-                                                @foreach($hinhthuclamviec as $key =>$hinhthuc)
-                                                <option value="{{$hinhthuc->hinhThuc_id}}">{{$hinhthuc->hinhThuc_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                <!-- </div> -->
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-input" name="user_email" id="email" require />
                             </div>
                             <div class="form-group">
-                                <input type="submit" name="submit" id="submit" class="form-submit" value="Submit" />
+                                <label for="diachi">Địa chỉ</label>
+                                <input type="text" class="form-input" name="user_diachi" id="email" require />
                             </div>
-                        </form>
-                        <div class="mt-4 text-center" style="margin-top: 32px;">
-                            <!-- <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p> -->
-                        </div>
+
+                            <div class="form-group">
+                                <label for="country">Thành phố</label>
+                                <div class="select-list">
+                                    <select name="thanhpho_id">
+                                        @foreach($tinhthanh as $key =>$tinhthanh)
+                                        <option value="{{$tinhthanh->tinhthanh_id}}">{{$tinhthanh->tinhthanh_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Ngành nghề</label>
+                                <div class="select-list">
+                                    <select name="nganhnghe_id">
+                                        @foreach($loainganhnghe as $key =>$nganhnghe)
+                                        <option value="{{$nganhnghe->nganhnghe_id}}">{{$nganhnghe->nganhnghe_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Kinh nghiệm</label>
+                                <div class="select-list">
+                                    <select name="id_kinhnghiem" require>
+                                        @foreach($kinhnghiem as $key =>$kinhnghiem)
+                                        <option value="{{$kinhnghiem->kinhnghiem_id}}">{{$kinhnghiem->kinhnghiem_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Bằng cấp</label>
+                                <div class="select-list">
+                                    <select name="id_bangcap">
+                                        @foreach($bangcap as $key =>$bangcap)
+                                        <option value="{{$bangcap->bangcap_id}}">{{$bangcap->bangcap_ten}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Hình thức</label>
+                                <div class="select-list">
+                                    <select name="hinhthuc_id" require>
+                                        @foreach($hinhthuclamviec as $key =>$hinhthuc)
+                                        <option value="{{$hinhthuc->hinhThuc_id}}">{{$hinhthuc->hinhThuc_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- </div> -->
                     </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" id="submit" class=" btn btn-primary btn-block waves-effect waves-light form-submit" value="Submit" />
+                    </div>
+                    </form>
+                    <div class="mt-4 text-center" style="margin-top: 32px;">
 
+                    </div>
                 </div>
-            </div>
-            <div class="mt-4 text-center" style="margin-top: 32px;">
-                <!-- <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p> -->
-            </div>
-            <div class="mt-5 text-center">
 
-                <div>
-                    <p>Đã có tài khoản ? <a href="{{URL :: to('/dang-nhap')}}" class="font-weight-medium text-primary"> Đăng nhập</a> </p>
-                    <p> Đăng kí với tư cách nhà tuyển dụng ? <a href="{{URL :: to('/dang-ki-ntd')}}" class="font-weight-medium text-primary"> Đăng kí</a> </p>
-                    <!-- <p>© 2020 Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p> -->
-                </div>
             </div>
+    </div>
+    <div class="mt-4 text-center" style="margin-top: 32px;">
 
     </div>
+    <div class="mt-5 text-center">
 
+        <div>
+            <p>Đã có tài khoản ? <a href="{{URL :: to('/dang-nhap')}}" class="font-weight-medium text-primary"> Đăng nhập</a> </p>
+            <p> Đăng kí với tư cách nhà tuyển dụng ? <a href="{{URL :: to('/dang-ki-ntd')}}" class="font-weight-medium text-primary"> Đăng kí</a> </p>
 
-    <!-- </div>
-                    </div>
-                    </section>
+        </div>
+    </div>
 
-                </div> -->
+    </div>
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

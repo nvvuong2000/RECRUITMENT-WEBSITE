@@ -68,11 +68,15 @@ class DangnhapController extends Controller
         $newformat = date('d-m-Y', $time);
         $today_dt = new DateTime($today);
         $expire_dt = new DateTime($newformat);
+        if (!$check->checkNull($user['user_hoten']) || !$check->checkNull($user['user_taikhoan']) || !$check->checkNull($user['user_email']) || !$check->checkNull($user['user_diachi']) || !$check->checkNull($Request->user_re_mk) || !$check->checkNull($Request->user_mk) || !$check->checkNull($Request->user_diachi)) {
+            Session::put('message', 'Thông tin không được trống');
+            return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
+        }
         if ($today_dt < $expire_dt) {
             Session::put('message', 'Ngày tháng năm sinh không hợp lệ');
             return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
         }
-        if ($check->checkFullName($Request->user_hoten)) {
+        if (!$check->checkFullName($Request->user_hoten)) {
             Session::put('message', 'Họ tên tài khoản không hợp lệ');
             return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
         }
@@ -93,10 +97,12 @@ class DangnhapController extends Controller
             // echo count($result);
             Session::put('message', 'Username đã tồn tại');
             return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
-        } else if (count($result1) != 0) {
-            Session::put('message', 'Số điện thoại  đã tồn tại');
-            return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
-        } else if (count($result2) != 0) {
+        } 
+        // else if (count($result1) != 0) {
+        //     Session::put('message', 'Số điện thoại  đã tồn tại');
+        //     return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
+        // } 
+        else if (count($result2) != 0) {
             Session::put('message', 'Email đã tồn tại');
             return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
         } else if ($mk !== $re_mk) {
@@ -165,32 +171,29 @@ class DangnhapController extends Controller
             Session::put('message', 'Thông tin không được trống');
             return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
         }
-        if ($check->checkFullName($Request->user_hoten)) {
+        if (!$check->checkFullName($Request->user_hoten)) {
             Session::put('message', 'Họ tên tài khoản không hợp lệ');
             return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
         }
-        if (!$check->checkTel($Request->user_sdt || !$Request->doanhnghiep_sdt)) {
+        if (!$check->checkTel($Request->user_sdt )|| !$check->checkTel($Request->doanhnghiep_sdt)) {
             Session::put('message', 'Số điện thoại không hợp lệ');
             return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
         }
-        if (!$check->checkFax($Request->doanhnghiep_fax)) {
-            Session::put('message', 'Số Fax  không hợp lệ');
-            return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
-        }
-        if (!$check->checkAddress($Request->user_diachi || !$Request->diachi)) {
-            Session::put('message', 'Địa chỉ  không hợp lệ');
-            return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
-        }
+        // if (!$check->checkFax($Request->doanhnghiep_fax)) {
+        //     Session::put('message', 'Số Fax  không hợp lệ');
+        //     return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
+        // }
+        // if (!$check->checkAddress($Request->user_diachi) || !$check->checkAddress($Request->diachi)) {
+        //     Session::put('message', 'Địa chỉ  không hợp lệ');
+        //     return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
+        // }
         $result = DB::table('tbl:user')->where('user_taikhoan', '=', $user['user_taikhoan'])->get();
-        $result1 = DB::table('tbl:user')->where('user_sdt', '=', $user['user_sdt'])->get();
+        // $result1 = DB::table('tbl:user')->where('user_sdt', '=', $user['user_sdt'])->get();
         $result2 = DB::table('tbl:user')->where('user_email', '=', $user['user_email'])->get();
 
         if (count($result) != 0) {
             // echo count($result);
             Session::put('message', 'Username đã tồn tại');
-            return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
-        } else if (count($result1) != 0) {
-            Session::put('message', 'Số điện thoại  đã tồn tại');
             return Redirect::to('/dang-ki-ntd')->with('message', Session::get('message'));
         } else if (count($result2) != 0) {
             Session::put('message', 'Email đã tồn tại');

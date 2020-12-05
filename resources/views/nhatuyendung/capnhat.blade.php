@@ -95,7 +95,7 @@
                                     </li>
                                     <li class="careerfy-column-12">
                                         <label>Mô tả công việc *</label>
-                                        <textarea name="mota" value="{{$td->mota}}"></textarea>
+                                        <textarea name="mota">{{$td->mota}}</textarea>
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Địa chỉ email</label>
