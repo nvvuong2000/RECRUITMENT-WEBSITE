@@ -1,7 +1,7 @@
 @charset "UTF-8";
-@import url("css/homepage-two.css");
+/* @import url("css/homepage-two.css");
 @import url("css/homepage-three.css");
-@import url("css/homepage-four.css");
+@import url("css/homepage-four.css"); */
 
 /*
 01. Theme Typo
@@ -89,6 +89,7 @@
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+    font-family: 'Roboto',sans-serif;
 }
 body {
     background-color: #ffffff;
@@ -110,6 +111,7 @@ h1 {
 }
 h2 {
     font-size: 24px;
+    color:#304FFE;
 }
 h3 {
     font-size: 22px;
@@ -2103,3 +2105,40 @@ li:hover .careerfy-read-more { background-color: transparent; }
     padding-right: 0px; }
 .careerfy-header-seven .careerfy-headsix-option > li > a {
     padding: 10px 20px 8px 20px; }
+.custom-file-input {
+    color: transparent;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.custom-file-input::before {
+    content: 'Select some files';
+    color: black;
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+.custom-file-input:hover::before {
+    border-color: black;
+}
+
+.custom-file-input:active {
+    outline: 0;
+}
+
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+    

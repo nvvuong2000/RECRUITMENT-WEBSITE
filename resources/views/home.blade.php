@@ -1,43 +1,42 @@
 @extends('home_layout')
 
-@section('home_content')
+
+<!-- @section('home_content') -->
 <!-- Main Section -->
 
-            <div class="careerfy-main-section">
-                <div class="container">
-                    <div class="row">
+<div class="careerfy-main-section">
+    <div class="container">
+        <div class="row">
 
-                        <div class="col-md-12 careerfy-typo-wrap">
-                           
-                            <!-- Categories -->
-                            <div class="categories-list">
+            <div class="col-md-12 careerfy-typo-wrap">
 
-                                <ul class="careerfy-row">
-                                    @foreach($loainganhnghe as $key => $loai)
-                                    <li class="careerfy-column-3">
-                                        <i class="careerfy-icon careerfy-engineer"></i>
-                                        <a href="{{URL ::to('/loai/'.$loai->nganhnghe_id)}}">{{$loai->nganhnghe_name}}</a>
-                                        <span>(15 Open Vacancies)</span>
-                                    </li>
-                                    @endforeach     
-                                    </ul>
-                            </div>
-                          
-                            <!-- Categories -->
-                        </div>
 
-                    </div>
+                <div class="categories-list">
+
+                    <ul class="careerfy-row">
+                        <!-- <h1> Heloo </h1> -->
+                        @foreach($filter as $key => $loai)
+                        <li class="careerfy-column-3">
+                            <i class="{{$loai->class}}"></i>
+                            <a href="{{URL ::to('/loai/'.$loai->id_loainganhnghe)}}">{{$loai->nganhnghe_name}}</a>
+                            <span>{{$loai->count}}</span>
+                        </li>
+                        @endforeach
+                    </ul>
                 </div>
+
+
             </div>
 
-            <!-- Main Section -->
-                 <!-- Main Section -->
-        
-
-            
-          
-
         </div>
-        <!-- Main Content -->
+    </div>
+    <!-- </div>
+@yield('home') -->
 
+
+
+
+
+
+</div>
 @endsection

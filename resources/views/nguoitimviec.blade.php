@@ -1,41 +1,34 @@
 @extends('home_layout')
 
+<!-- @section('home') -->
 @section('home_content')
-<!--
 
-            <div class="careerfy-main-section">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-12 careerfy-typo-wrap">
-                           
-                            <!-- Categories -->
-<div class="categories-list">
-
-    <ul class="careerfy-row">
-        @foreach($loainganhnghe as $key => $loai)
-        <li class="careerfy-column-3">
-            <i class="careerfy-icon careerfy-engineer"></i>
-            <a href="#">{{$loai->nganhnghe_name}}</a>
-            <span>(15 Open Vacancies)</span>
-        </li>
-        @endforeach
-    </ul>
-</div>
-
-<!-- Categories -->
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- Main Section -->
-<!-- Main Section -->
+<!-- @yield('home_content') -->
 <div class="careerfy-main-section">
     <div class="container">
         <div class="row">
+            <div class="col-md-12 careerfy-typo-wrap">
+                <section class="careerfy-fancy-title">
+                    <h2>DANH SÁCH CÁC NGÀNH NGHỀ</h2>
 
+                </section>
+
+                <div class="categories-list">
+
+                    <ul class="careerfy-row">
+                        <!-- <h1> Heloo </h1> -->
+                        @foreach($dsnghe as $key => $loai)
+                        <li class="careerfy-column-3">
+                            <i class="{{$loai->class}}"></i>
+                            <a href="{{URL ::to('/loai/'.$loai->id_loainganhnghe)}}">{{$loai->nganhnghe_name}}</a>
+                            <span>{{$loai->count}}</span>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+
+            </div>
             <div class="col-md-12 careerfy-typo-wrap">
                 <!-- Fancy Title -->
                 <section class="careerfy-fancy-title">
@@ -52,7 +45,7 @@
                         <li class="careerfy-column-6">
                             <div class="careerfy-table-layer">
                                 <div class="careerfy-table-row">
-                                    <figure><a href="{{URL ::to('/chitiet-tintuyendung/'.$hienthi->id_tintuyendung)}}"><img src="{{('public/frontend/images/featured-listing-1.jpg')}}" alt=""></a></figure>
+                                    <figure><a href="{{URL ::to('/chitiet-tintuyendung/'.$hienthi->id_tintuyendung)}}"><img src="{{($hienthi->link)}}" alt=""></a></figure>
                                     <div class="careerfy-featured-listing-text">
 
                                         <a href="{{URL ::to('/chitiet-tintuyendung/'.$hienthi->id_tintuyendung)}}">
@@ -93,7 +86,7 @@
                 </div>
 
                 <!-- Featured Jobs Listings -->
-                <div class="careerfy-plain-btn"> <a href="#">View All Jobs</a> </div>
+                <!-- <div class="careerfy-plain-btn"> <a href="#">View All Jobs</a> </div> -->
             </div>
 
         </div>

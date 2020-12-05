@@ -34,20 +34,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="{{('public/backend/css/font-awesome.css')}}" rel="stylesheet">
 	<!-- //font-awesome icons -->
 	<script src="{{('public/backend/js/jquery2.0.3.min.js')}}"></script>
+
 </head>
 
 <body>
 	<div class="log-w3">
 		<div class="w3layouts-main">
 			<h2>Đăng nhập ngay</h2>
-			<?php
-			// $message = Session::get('message');
-			// if ($message) {
-			// 	echo $message;
-			// 	Session::put('message', null);
-			// }
-
-			?>
+			@if(session()->has('error'))
+			<div class="alert alert-info text-center " style="font-size:16px">
+				{{ session()->get('error') }}
+			</div>
+			@elseif(session()->has('success'))
+			<div class="alert alert-info text-center " style="font-size:16px">
+				{{ session()->get('success') }}
+			</div>
+			@endif
 			<form action="{{URL::to('/permission')}}" method="post">
 				{{ csrf_field()}}
 				<input type="text" class="ggg" name="user_email" placeholder="Nhập email" required="">
@@ -60,8 +62,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p>Bạn chưa có tài khoản?<a href="{{URL :: to('/dang-ki-uv')}}">Đăng ký ngay</a></p>
 		</div>
 	</div>
-	<script src="{{('public/backend/js/bootstrap.js')}}"></script>
-	<script src="{{('public/backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
+	<scrip src="{{('public/backend/js/bootstrap.js')}}"></scrip>
+	<scrip src="{{('public/backend/js/jquery.dcjqaccordion.2.7.js')}}"></scrip>
 	<script src="{{('public/backend/js/scripts.js')}}"></script>
 	<script src="{{('public/backend/js/jquery.slimscroll.js')}}"></script>
 	<script src="{{('public/backend/js/jquery.nicescroll.js')}}"></script>

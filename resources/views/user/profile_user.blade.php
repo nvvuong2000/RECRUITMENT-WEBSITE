@@ -12,7 +12,7 @@
     <!-- Css -->
     <link href="{{('public/frontend/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/font-awesome.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/css/flaticon.css')}}" rel="stylesheet">
+    <!-- <link href="{{('public/frontend/css/flaticon.css')}}" rel="stylesheet"> -->
     <link href="{{('public/frontend/css/slick-slider.cs')}}s" rel="stylesheet">
     <link href="{{('public/frontend/css/fancybox.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/plugin.css')}}" rel="stylesheet">

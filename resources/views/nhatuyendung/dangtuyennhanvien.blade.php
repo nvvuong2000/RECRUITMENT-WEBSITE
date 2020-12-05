@@ -26,7 +26,6 @@
     <link href="{{('public/frontend/css/style.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic-ext,vietnamese')}} rel=" stylesheet}}">
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,24 +40,15 @@
                 <div class="careerfy-typo-wrap">
                     <div class="careerfy-employer-dashboard-nav">
                         <figure>
-                            <a href="#" class="employer-dashboard-thumb"><img src="extra-images/employer-dashboard-1.png" alt=""></a>
-                            <figcaption>
-                                <div class="careerfy-fileUpload">
-                                    Upload Photo</span>
-                                    <input type="file" class="careerfy-upload" />
-                                </div>
-                                <h2></h2>
-                            </figcaption>
+                            <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$user[0]->link}}" alt=""></a>
                         </figure>
                         <ul>
-                            <li class="active"><a href="{{URL::to('/thongtin-doanhnghiep')}}"></i> Thông tin doanh nghiệp</a></li>
-                            <!-- <li  ><a href="{{URL::to('/quan-li-ho-so')}}"></i> Quản lí hồ sơ</a></li> -->
-                            <li><a href="{{URL::to('/danh-sach-ung-tuyen/'.$_SESSION['id'])}}"> Danh sách ứng tuyển</a></li>
-                            <li><a href="{{URL::to('/dangtuyen-nhanvien')}}"> Đăng tuyển nhân viên</a></li>
+                            <li><a href="{{URL::to('/thongtin-doanhnghiep')}}"></i> Thông tin doanh nghiệp</a></li>
+                            <li><a href="{{URL::to('/capnhat-doanhnghiep')}}"></i> Cập nhật doanh nghiệp</a></li>
+                            <li><a href="{{URL::to('/danh-sach-ung-tuyen')}}"> Danh sách ứng tuyển</a></li>
+                            <li class="active"><a href="{{URL::to('/dangtuyen-nhanvien')}}"> Đăng tuyển nhân viên</a></li>
                             <li><a href="{{URL::to('/quanly-tintuyendung')}}">Quản lý tin tuyển dụng</a></li>
-
-                            <li><a href="{{URL::to('/thaydoimatkhau')}}"> Đổi mật khẩu</a></li>
-                            <li><a href="{{URL::to('/dangxuat')}}"> Đăng xuất</a></li>
+                          
                         </ul>
                     </div>
                 </div>
@@ -72,31 +62,18 @@
                                 <!-- Profile Title -->
                                 <div class="careerfy-profile-title">
                                     <h2>Đăng tuyển công việc</h2>
-                                    <?php
 
-                                    $message = Session::get('message');
-                                    if ($message) {
-                                        echo $message;
-                                        Session::put('message', null);
-                                    }
-
-                                    // echo $suatintd;
-                                    ?>
                                 </div>
                                 <!-- New Job -->
-
-
                                 <ul class="careerfy-row careerfy-employer-profile-form">
                                     <li class="careerfy-column-6">
-
                                         <label>Tiêu đề cho công việc</label>
                                         <input name="tieude" value="" type="text">
-
-
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Thời hạn nộp hồ sơ</label>
-                                        <input name="thoihan" value="" type="text">
+                                        <!-- <input name="thoihan" value="" type="text"> -->
+                                        <input type="date" class="form-input" name="thoihan" id="birth_date" placeholder="MM-DD-YYYY" />
                                     </li>
                                     <li class="careerfy-column-12">
                                         <label>Mô tả công việc *</label>
@@ -108,7 +85,6 @@
                                             <input name=email type="email" />
                                         </div>
                                     </li>
-
                                     <li class="careerfy-column-6">
                                         <label>Loại ngành nghề</label>
                                         <div class="careerfy-profile-select">
@@ -159,7 +135,6 @@
                                             </select>
                                         </div>
                                     </li>
-
                                     <li class="careerfy-column-6">
                                         <label>Kinh nghiệm</label>
                                         <div class="careerfy-profile-select">
@@ -180,7 +155,6 @@
                                             </select>
                                         </div>
                                     </li>
-
                                     <li class="careerfy-column-6">
                                         <label>Tỉnh/thành phố *</label>
                                         <div class="careerfy-profile-select">
@@ -193,9 +167,8 @@
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Số lượng tuyển</label>
-                                        <input name="soluong" value="" type="text">
+                                        <input name="soluong" value="" type="number">
                                     </li>
-
                                     <li class="careerfy-column-10">
                                         <label>Địa chỉ </label>
                                         <div class="careerfy-profile-select">
@@ -218,9 +191,7 @@
                                         <span class="careerfy-short-message">For the precise location, you can drag and drop the pin.</span>
                                     </li>
                                 </ul>
-
                             </div>
-
                             <input type="submit" class="careerfy-employer-profile-submit" value="Thêm tin tuyển dụng">
                         </form>
                     </div>

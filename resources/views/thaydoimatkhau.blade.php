@@ -10,7 +10,7 @@
                     <div class="careerfy-typo-wrap">
                         <div class="careerfy-employer-dashboard-nav">
                             <figure>
-                                <a href="#" class="employer-dashboard-thumb"><img src="extra-images/employer-dashboard-1.png" alt=""></a>
+                                <a href="#" class="employer-dashboard-thumb"><img img style="height:100%"  src="{{$mk[0]->link}}" alt=""></a>
                                 <figcaption>
                                     <div class="careerfy-fileUpload">
                                         Upload Photo</span>
@@ -19,17 +19,7 @@
                                     <h2></h2>
                                 </figcaption>
                             </figure>
-                            <ul>
-                                <li class="active"><a href="{{URL::to('/thongtin-doanhnghiep')}}"></i> Thông tin doanh nghiệp</a></li>
-                                <!-- <li><a href="{{URL::to('/quan-li-ho-so')}}"></i> Quản lí hồ sơ</a></li> -->
-                                <li><a href="{{URL::to('/danh-sach-ung-tuyen/'.$_SESSION['id'])}}"> Danh sách ứng tuyển</a></li>
 
-                                <li><a href="{{URL::to('/dangtuyen-nhanvien')}}"> Đăng tuyển nhân viên</a></li>
-                                <li><a href="{{URL::to('/quanly-tintuyendung')}}">Quản lý tin tuyển dụng</a></li>
-
-                                <li><a href="{{URL::to('/thaydoimatkhau')}}"> Đổi mật khẩu</a></li>
-                                <li><a href="{{URL::to('/dangxuat')}}"> Đăng xuất</a></li>
-                            </ul>
                         </div>
                     </div>
                 </aside>
@@ -40,20 +30,20 @@
                             <div class="careerfy-employer-box-section">
 
                                 <div class="careerfy-profile-title">
-                                    <h2>Change Password</h2>
+                                    <h2>Thay đổi mật khẩu</h2>
                                 </div>
                                 <ul class="careerfy-row careerfy-employer-profile-form">
                                     <input value="{{$_SESSION['id']}}" name="id_user" type="hidden">
                                     <li class="careerfy-column-12">
-                                        <label>Old Password *</label>
+                                        <label>Mật khẩu cũ *</label>
                                         <input value="oldPassword" name="oldPassword" type="password">
                                     </li>
                                     <li class="careerfy-column-6">
-                                        <label>New Password *</label>
+                                        <label>Mật khẩu mới *</label>
                                         <input value=" newPassword" name="newPassword" type="password">
                                     </li>
                                     <li class="careerfy-column-6">
-                                        <label>Confirm New Password *</label>
+                                        <label>Xác nhận mật khẩu *</label>
                                         <input value="confirmPassword" name="confirmPassword" type="password">
                                     </li>
                                 </ul>
@@ -72,73 +62,7 @@
 </div>
 <!-- Main Content -->
 
-<!-- Footer -->
-<footer id="careerfy-footer" class="careerfy-footer-one">
-    <div class="container">
-        <!-- Footer Widget -->
-        <div class="careerfy-footer-widget">
-            <div class="row">
-                <aside class="widget col-md-4 widget_contact_info">
-                    <div class="widget_contact_wrap">
-                        <a class="careerfy-footer-logo" href="index.html"><img src="images/footer-logo.png" alt=""></a>
-                        <p>Sed consequat sapien faus quam bibendum convallis quis in nulla. Pellentesque volutpat odio eget diam cursus semper. Sed coquat sapien faucibus quam.</p>
-                        <a href="#" class="careerfy-classic-btn careerfy-bgcolor">Learn more</a>
-                    </div>
-                </aside>
-                <aside class="widget col-md-3 widget_nav_manu">
-                    <div class="footer-widget-title">
-                        <h2>Quick Links</h2>
-                    </div>
-                    <ul>
-                        <li><a href="#">Shortcodes</a></li>
-                        <li><a href="#">Job Page</a></li>
-                        <li><a href="#">Job Page Alternative</a></li>
-                        <li><a href="#">Resume Page</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </aside>
-                <aside class="widget col-md-3 widget_nav_manu">
-                    <div class="footer-widget-title">
-                        <h2>For Candidates</h2>
-                    </div>
-                    <ul>
-                        <li><a href="#">Browse Jobs</a></li>
-                        <li><a href="#">Browse Categories</a></li>
-                        <li><a href="#">Submit Resume</a></li>
-                        <li><a href="#">Candidate Dashboard</a></li>
-                        <li><a href="#">Job Alerts</a></li>
-                        <li><a href="#">My Bookmarks</a></li>
-                    </ul>
-                </aside>
-                <aside class="widget col-md-2 widget_nav_manu">
-                    <div class="footer-widget-title">
-                        <h2>For Employers</h2>
-                    </div>
-                    <ul>
-                        <li><a href="#">Browse Candidates</a></li>
-                        <li><a href="#">Employer Dashboard</a></li>
-                        <li><a href="#">Add Job</a></li>
-                        <li><a href="#">Job Packages</a></li>
-                    </ul>
-                </aside>
-            </div>
-        </div>
-        <!-- Footer Widget -->
-        <!-- CopyRight -->
-        <div class="careerfy-copyright">
-            <p>Copyrights © 2018 All Rights Reserved by <a href="#" class="careerfy-color">EyeCix</a></p>
-            <ul class="careerfy-social-network">
-                <li><a href="#" class="careerfy-bgcolorhover fa fa-facebook"></a></li>
-                <li><a href="#" class="careerfy-bgcolorhover fa fa-twitter"></a></li>
-                <li><a href="#" class="careerfy-bgcolorhover fa fa-dribbble"></a></li>
-                <li><a href="#" class="careerfy-bgcolorhover fa fa-linkedin"></a></li>
-                <li><a href="#" class="careerfy-bgcolorhover fa fa-instagram"></a></li>
-            </ul>
-        </div>
-        <!-- CopyRight -->
-    </div>
-</footer>
+
 <!-- Footer -->
 
 </div>

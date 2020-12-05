@@ -18,7 +18,7 @@
     <!-- Css -->
     <link href="{{('public/frontend/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/font-awesome.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/css/flaticon.css')}}" rel="stylesheet">
+    <!-- <link href="{{('public/frontend/css/flaticon.css')}}" rel="stylesheet"> -->
     <link href="{{('public/frontend/css/slick-slider.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/fancybox.css')}}" rel="stylesheet">
     <link href="{{('public/frontend/css/plugin.css')}}" rel="stylesheet">
@@ -37,32 +37,37 @@
 <div class="careerfy-main-section careerfy-dashboard-fulltwo">
     <div class="container">
         <div class="row">
+
             <aside class="careerfy-column-3">
                 <div class="careerfy-typo-wrap">
                     <div class="careerfy-employer-dashboard-nav">
+                        @if(isset($_SESSION['id_quyen']) && $_SESSION['id_quyen']==1)
                         <figure>
-                            <a href="#" class="employer-dashboard-thumb"><img src="extra-images/employer-dashboard-1.png" alt=""></a>
-                            <figcaption>
-                                <div class="careerfy-fileUpload">
-                                    Upload Photo</span>
-                                    <input type="file" class="careerfy-upload" />
-                                </div>
-                                <h2></h2>
-                            </figcaption>
+                            <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$chitiet_tintd[0]->link}}" alt=""></a>
                         </figure>
                         <ul>
                             <li class="active"><a href="{{URL::to('/thongtin-doanhnghiep')}}"></i> Thông tin doanh nghiệp</a></li>
-                            <li><a href="{{URL::to('/danh-sach-ung-tuyen/'.$_SESSION['id'])}}"> Danh sách ứng tuyển</a></li>
+                            <li><a href="{{URL::to('/capnhat-doanhnghiep')}}"></i> Cập nhật doanh nghiệp</a></li>
+                            <li><a href="{{URL::to('/danh-sach-ung-tuyen')}}"> Danh sách ứng tuyển</a></li>
                             <li><a href="{{URL::to('/dangtuyen-nhanvien')}}"> Đăng tuyển nhân viên</a></li>
                             <li><a href="{{URL::to('/quanly-tintuyendung')}}">Quản lý tin tuyển dụng</a></li>
 
-                            <li><a href="{{URL::to('/thaydoimatkhau')}}"> Đổi mật khẩu</a></li>
-                            <li><a href="{{URL::to('/dangxuat')}}"> Đăng xuất</a></li>
                         </ul>
+                        @else
+                        @endif
                     </div>
                 </div>
             </aside>
             <div class="careerfy-column-9">
+                @if(session()->has('success'))
+                <div class="alert alert-info text-center " style="font-size:16px">
+                    {{ session()->get('success') }}
+                </div>
+                @elseif(session()->has('message'))
+                <div class="alert alert-danger text-center " style="font-size:16px">
+                    {{ session()->get('message') }}
+                </div>
+                @endif
                 <div class="careerfy-typo-wrap">
                     <div class="careerfy-employer-dasboard">
                         <form action="{{url::to('/luu-tintuyendung')}}" method="post">
@@ -72,17 +77,6 @@
                                 <!-- Profile Title -->
                                 <div class="careerfy-profile-title">
                                     <h2>Cập nhật công việc</h2>
-                                    <?php
-
-                                    $message = Session::get('message');
-                                    if ($message) {
-                                        echo $message;
-                                        Session::put('message', null);
-                                    }
-
-                                    // echo $suatintd;
-                                    echo $chitiet_tintd
-                                    ?>
                                 </div>
                                 <!-- New Job -->
 
@@ -97,7 +91,7 @@
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Thời hạn nộp hồ sơ</label>
-                                        <input name="thoihan" value="{{$td->hannophoso}}" type="text">
+                                        <input name="thoihan" value="{{$td->hannophoso}}" type="date">
                                     </li>
                                     <li class="careerfy-column-12">
                                         <label>Mô tả công việc *</label>
@@ -238,7 +232,7 @@
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Số lượng tuyển</label>
-                                        <input name="soluong" value="{{$td->soluong}}" type="text">
+                                        <input name="soluong" value="{{$td->soluong}}" type="number">
                                     </li>
 
                                     <li class="careerfy-column-10">

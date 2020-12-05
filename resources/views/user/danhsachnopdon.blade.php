@@ -4,27 +4,31 @@
 <div class="careerfy-main-content">
     <div class="careerfy-main-section careerfy-dashboard-fulltwo">
         <div class="container">
+            @if(session()->has('success'))
+            <div class="alert alert-info text-center " style="font-size:16px">
+                {{ session()->get('success') }}
+            </div>
+            @elseif(session()->has('error'))
+            <div class="alert alert-danger text-center " style="font-size:16px">
+                {{ session()->get('error') }}
+            </div>
+            @endif
             <div class="row">
                 <aside class="careerfy-column-3">
                     <div class="careerfy-typo-wrap">
                         <div class="careerfy-employer-dashboard-nav">
                             <figure>
-                                <a href="#" class="employer-dashboard-thumb"><img src="extra-images/employer-dashboard-1.png" alt=""></a>
-                                <figcaption>
-                                    <div class="careerfy-fileUpload">
-                                        Upload Photo</span>
-                                        <input type="file" class="careerfy-upload" />
-                                    </div>
-                                    <h2></h2>
-                                </figcaption>
+
+                                <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$user[0]->link}}" alt=""></a>
+
+
                             </figure>
                             <ul>
-                                <li class="active"><a href="{{URL::to('/thongtin-ungvien')}}"></i> Thông tin ứng viên</a></li>
-                                <!-- <li><a href="{{URL::to('/quan-li-ho-so')}}"></i> Quản lí hồ sơ</a></li> -->
-                                <li><a href="{{URL::to('/danh-sach-ung-tuyen/'.$_SESSION['id'])}}"> Danh sách ứng tuyển</a></li>
+                                <li><a href="{{URL::to('/thongtin-ungvien')}}"></i> Thông tin ứng viên</a></li>
+                                <li><a href="{{URL::to('/cap-nhat-ung-vien')}}"> Cập nhật ứng viên</a></li>
+                                <li><a href="{{URL::to('/quan-li-ho-so')}}"></i> Quản lí hồ sơ</a></li>
+                                <li class="active"><a href="{{URL::to('/danh-sach-nop-don/'.$_SESSION['id'])}}"> Đã Apply</a></li>
 
-                                <li><a href="{{URL::to('/thaydoimatkhau')}}"> Đổi mật khẩu</a></li>
-                                <li><a href="{{URL::to('/dangxuat')}}"> Đăng xuất</a></li>
                             </ul>
                         </div>
                     </div>
@@ -39,10 +43,10 @@
                                 <!-- Manage Jobs Header -->
                                 <div class="careerfy-table-layer careerfy-managejobs-thead">
                                     <div class="careerfy-table-row">
-                                        <div class="careerfy-table-cell">Job Title</div>
+                                        <div class="careerfy-table-cell"><strong>Vị trí<strong></div>
                                         <!-- <div class="careerfy-table-cell">Applications</div> -->
-                                        <div class="careerfy-table-cell">Featured</div>
-                                        <div class="careerfy-table-cell">Status</div>
+                                        <div class="careerfy-table-cell"><strong>Lời nhắn<strong> </div>
+                                        <div class="careerfy-table-cell"><strong>Trạng thái<strong></div>
                                         <div class="careerfy-table-cell"></div>
                                     </div>
                                 </div>
@@ -61,8 +65,9 @@
                                             <?php
 
                                             if ($ct->trangthai == 2) {
+                                                echo "<div class='careerfy-table-cell'></div>";
                                             }
-                                            if ($ct->trangthai == 0) {
+                                            if ($ct->trangthai == 0 || $ct->trangthai == 1) {
                                                 echo '<div class="careerfy-table-cell">
                                                 <li><a data-toggle="modal" href="#myModal"><i class="far fa-envelope"></i></a></li>
                                             </div>';
@@ -104,20 +109,19 @@
                                             <div class="careerfy-table-cell">
                                                 <div class="careerfy-managejobs-links">
                                                     <?php
-                                                    $link = URL::to("/chitiet-tintuyendung/" . $ct->id_tintuyendung);
-                                                    // $link_del =  {{!!route('xoa-don',['id_ungvien'=>$_SESSION['id'],'id_tintuyendung'=>$chitiet->id_tintuyendung])!!}};
-                                                    // $link_del = URL::to("/xoa-don/".$ct->id_tintuyendung);
                                                     if ($ct->trangthai == 2) {
-                                                        // echo "<a href='$link_del' class='jobsearch-savedjobs-links'><i class='fas fa-trash'></i></a>";
-                                                        echo "<a href='{$link}' class='jobsearch-savedjobs-links jobsearch-delete-applied-job' data-id='324' > <i class='far fa-eye'></i></a>";
+                                                        // {{URL ::to('/chitiet-tintuyendung/'.$luu->id_tintuyendung)}}
+                                                        $url1 = URL::to('/xoa_don/' . $_SESSION['id'] . '/' . $ct->id_tintuyendung);
+                                                        $url2 = URL::to('/chitiet-tintuyendung/' . $ct->id_tintuyendung);
+                                                        echo "<a href='{$url1}' class='jobsearch-savedjobs-links'><i class='fas fa-trash'></i></a>";
+                                                        echo "<a href='{$url2}' class='jobsearch-savedjobs-links jobsearch-delete-applied-job' data-id='324' > <i class='far fa-eye'></i></a>";
                                                     }
-                                                    if ($ct->trangthai == 0) {
-                                                        echo "<a href='{$link}' class='jobsearch-savedjobs-links jobsearch-delete-applied-job' data-id='324' > <i class='far fa-eye'></i></a>";
+                                                    if ($ct->trangthai == 0 || $ct->trangthai == 1) {
+                                                        $url = URL::to('/chitiet-tintuyendung/' . $ct->id_tintuyendung);
+                                                        echo "<a href='{$url}' class='jobsearch-savedjobs-links jobsearch-delete-applied-job' data-id='324' > <i class='far fa-eye'></i></a>";
                                                     }
+                                                    // 
                                                     ?>
-                                                    <!-- <a href="#" class="careerfy-icon careerfy-view"></a>
-                                                    <a href="#" class="careerfy-icon careerfy-edit"></a>
-                                                    <a href="#" class="careerfy-icon careerfy-rubbish"></a> -->
                                                 </div>
                                             </div>
                                         </div>

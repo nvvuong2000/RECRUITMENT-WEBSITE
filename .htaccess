@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+    RewriteCond %{REQUEST_URI} ^/update
+    RewriteRule ^.*$ /resources/views/user/update.php [L]
+
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
