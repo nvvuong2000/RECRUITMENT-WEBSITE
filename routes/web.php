@@ -73,3 +73,5 @@ Route::get('/nopdon/{id_doanhnghiep}/{id_ungvien}/{id_tintuyendung}', [
 Route::get('/nguoi-tuyen-dung', 'HomeController@nguoituyendung');
 Route::post('/luu-doanhnghiep', 'doanhnghiepController@luudoanhnghiep');
 Route::post('/luu-ungvien', 'doanhnghiepController@luuungvien');
+Route::get('/ban-do', 'doanhnghiepController@bando');
+Route::get('/khong-tim-thay', 'doanhnghiepController@khongtimthay');

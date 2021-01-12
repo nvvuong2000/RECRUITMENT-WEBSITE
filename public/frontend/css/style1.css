@@ -171,7 +171,7 @@ a {
 
 .signup-form {
   padding: 58px 50px 0px 50px;
-  height: 652px;
+  height: auto;
   overflow-y: auto; }
 
 .signup-form::-webkit-scrollbar-track {

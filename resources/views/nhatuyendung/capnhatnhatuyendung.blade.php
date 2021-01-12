@@ -27,7 +27,8 @@
                                             <div class="box">
                                                 <input type="file" name="file-7" id="file-7" class="inputfile inputfile-6" data-multiple-caption="{count} files selected" multiple style="display:none" />
                                                 <label for="file-7"><span></span> <strong><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17">
-                                                            <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" /></svg> Cập nhật hình ảnh &hellip;</strong></label>
+                                                            <path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z" />
+                                                        </svg> Cập nhật hình ảnh &hellip;</strong></label>
                                                 <!-- <button type="submit" class="btn btn-outline-primary"><i class="fas fa-save"></i></button> -->
                                                 <button type="submit" style="background:#2980b9; border-radius: 0px 0px 0px 0px;" class="btn btn-outline-primary btn-lg btn-block"><i class="far fa-save"></i> Save</button>
                                             </div>
@@ -156,20 +157,20 @@
                                                                                                                                                                                                                                                                 echo "readonly";
                                                                                                                                                                                                                                                             } ?>>
                                     </li>
-                                    <!-- <li class="careerfy-column-2">
+                                    <li class="careerfy-column-2">
                                         <button class="careerfy-findmap-btn">Find on Map</button>
-                                    </li> -->
+                                    </li>
                                     <li class="careerfy-column-6">
                                         <label>Latitude</label>
-                                        <input value="{{$dn->doanhnghiep_kinhdo}}" onblur="if(this.value == '') { this.value ='51.4935825'; }" onfocus="if(this.value =='51.4935825') { this.value = ''; }" type="text" <?php if ($_SESSION['id_quyen'] == 0) {
-                                                                                                                                                                                                                            echo "readonly";
-                                                                                                                                                                                                                        } ?>>
+                                        <input value="{{$dn->doanhnghiep_vido}}" name="vido" type="text" <?php if ($_SESSION['id_quyen'] == 0) {
+                                                                                                                echo "readonly";
+                                                                                                            } ?>>
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Longitude</label>
-                                        <input value="{{$dn->doanhnghiep_vido}}" onblur="if(this.value == '') { this.value ='-0.16803379999998924'; }" onfocus="if(this.value =='-0.16803379999998924') { this.value = ''; }" type="text" <?php if ($_SESSION['id_quyen'] == 1) {
-                                                                                                                                                                                                                                                echo "readonly";
-                                                                                                                                                                                                                                            } ?>>
+                                        <input value="{{$dn->doanhnghiep_kinhdo}}" name="kinhdo" type="text" <?php if ($_SESSION['id_quyen'] == 0) {
+                                                                                                                echo "readonly";
+                                                                                                            } ?>>
                                     </li>
                                     <li class="careerfy-column-12">
                                         <div class="careerfy-profile-map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22589232.038285658!2d-103.9763543971716!3d46.28054447273778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1507595834401"></iframe></div>

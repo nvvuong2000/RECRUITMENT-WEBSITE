@@ -74,7 +74,7 @@
                                     </li>
                                     <li class="careerfy-column-6">
                                         <label>Fax</label>
-                                        <input name="fax" value="{{$dn->doanhnghiep_fax}}" type="text"  readonly>
+                                        <input name="fax" value="{{$dn->doanhnghiep_fax}}" type="text" readonly>
                                     </li>
 
 
@@ -114,7 +114,7 @@
                                                 <option value="{{$tinhthanh->tinhthanh_id}}" selected=" <?php $tinhthanh->tinhthanh_id == $dn->doanhnghiep_TinhThanhPho ? 'selected' : ''; ?>">{{$tinhthanh->tinhthanh_name}}</option>
                                                 @endforeach
                                             </select>
-                                            
+
                                         </div>
                                     </li>
                                     <li class="careerfy-column-10">
@@ -122,20 +122,9 @@
                                         <input name="diachi" readonly value="{{$dn->diachi}}" onblur="if(this.value == '') { this.value ='Ha Dong - Ha Noi - Viet Nam'; }" onfocus="if(this.value =='Ha Dong - Ha Noi - Viet Nam') { this.value = ''; }" type="text">
                                     </li>
                                     <li class="careerfy-column-2">
-                                        <button class="careerfy-findmap-btn">Find on Map</button>
+                                        <a class="careerfy-findmap-btn " href="{{URL::to('/ban-do')}}">Find on Map</a>
                                     </li>
-                                    <li class="careerfy-column-6">
-                                        <label>Latitude</label>
-                                        <input value="{{$dn->doanhnghiep_kinhdo}}" readonly onblur="if(this.value == '')  { this.value ='51.4935825'; }" onfocus="if(this.value =='51.4935825') { this.value = ''; }" type="text">
-                                    </li>
-                                    <li class="careerfy-column-6">
-                                        <label>Longitude</label>
-                                        <input value="{{$dn->doanhnghiep_vido}}" readonly onblur="if(this.value == '') { this.value ='-0.16803379999998924'; }" onfocus="if(this.value =='-0.16803379999998924') { this.value = ''; }" type="text">
-                                    </li>
-                                    <li class="careerfy-column-12">
-                                        <div class="careerfy-profile-map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d22589232.038285658!2d-103.9763543971716!3d46.28054447273778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1507595834401"></iframe></div>
-                                        <span class="careerfy-short-message">For the precise location, you can drag and drop the pin.</span>
-                                    </li>
+                                
                                 </ul>
                             </div>
                             @endforeach

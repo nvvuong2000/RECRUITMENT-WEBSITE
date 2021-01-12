@@ -19,7 +19,11 @@ class DangnhapController extends Controller
 {
 
     public function dangnhapntd()
+
     {
+        if(isset($_SESSION['id'])){
+            return Redirect::to('/');
+        }
         return view('nhatuyendung.dangnhap');
     }
     public function dangxuat()
@@ -45,15 +49,15 @@ class DangnhapController extends Controller
         $user['user_ngaysinh'] = $Request->user_ngaysinh;
         $user['user_email'] = $Request->user_email;
         $user['user_sdt'] = $Request->user_sdt;
-        $uv['hinhthuc_id'] = $Request->hinhthuc_id;
+        // $uv['hinhthuc_id'] = $Request->hinhthuc_id;
         $user['id_gioitinh'] = $Request->gender;
         $mk = $Request->user_mk;
         $re_mk = $Request->user_re_mk;
-        $uv['id_kinhnghiem'] = $Request->id_kinhnghiem;
-        $uv['id_bangcap'] = $Request->id_bangcap;
-        $user['user_diachi'] = $Request->user_diachi;
-        $uv['thanhpho_id'] = $Request->thanhpho_id;
-        $uv['nganhnghe_id'] = $Request->nganhnghe_id;
+        // $uv['id_kinhnghiem'] = $Request->id_kinhnghiem;
+        // $uv['id_bangcap'] = $Request->id_bangcap;
+        // $user['user_diachi'] = $Request->user_diachi;
+        // $uv['thanhpho_id'] = $Request->thanhpho_id;
+        // $uv['nganhnghe_id'] = $Request->nganhnghe_id;
         $result = DB::table('tbl:user')->where('user_taikhoan', '=', $user['user_taikhoan'])->get();
         $result1 = DB::table('tbl:user')->where('user_sdt', '=', $user['user_sdt'])->get();
         $result2 = DB::table('tbl:user')->where('user_email', '=', $user['user_email'])->get();
@@ -68,7 +72,7 @@ class DangnhapController extends Controller
         $newformat = date('d-m-Y', $time);
         $today_dt = new DateTime($today);
         $expire_dt = new DateTime($newformat);
-        if (!$check->checkNull($user['user_hoten']) || !$check->checkNull($user['user_taikhoan']) || !$check->checkNull($user['user_email']) || !$check->checkNull($user['user_diachi']) || !$check->checkNull($Request->user_re_mk) || !$check->checkNull($Request->user_mk) || !$check->checkNull($Request->user_diachi)) {
+        if (!$check->checkNull($user['user_hoten']) || !$check->checkNull($user['user_taikhoan']) || !$check->checkNull($user['user_email'])  || !$check->checkNull($Request->user_re_mk) || !$check->checkNull($Request->user_mk) ) {
             Session::put('message', 'Thông tin không được trống');
             return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
         }
@@ -85,10 +89,10 @@ class DangnhapController extends Controller
             return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
         }
 
-        if ($check->checkAddress($Request->user_diachi) == false || !$check->checkAddress($Request->diachi) == false) {
-            Session::put('message', 'Địa chỉ  không hợp lệ');
-            return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
-        }
+        // if ($check->checkAddress($Request->user_diachi) == false || !$check->checkAddress($Request->diachi) == false) {
+        //     Session::put('message', 'Địa chỉ  không hợp lệ');
+        //     return Redirect::to('/dang-ki-uv')->with('message', Session::get('message'));
+        // }
         $result = DB::table('tbl:user')->where('user_taikhoan', '=', $user['user_taikhoan'])->get();
         $result1 = DB::table('tbl:user')->where('user_sdt', '=', $user['user_sdt'])->get();
         $result2 = DB::table('tbl:user')->where('user_email', '=', $user['user_email'])->get();
@@ -225,14 +229,20 @@ class DangnhapController extends Controller
     {
         $user_email = $request->user_email;
         $user_matkhau = $request->user_matkhau;
+        // echo $user_email;
+        // echo $user_matkhau;
         $mk  = DB::table('tbl:user')->select('user_matkhau')->where('user_email', $user_email)->get('user_matkhau');
+        
         if (count($mk) !== 0) {
             $mk = $mk[0]->user_matkhau;
             if (password_verify($user_matkhau, $mk)) {
                 $id  = DB::table('tbl:user')->select('user_id', 'user_quyen', 'user_hoten')->where('user_email', $user_email)->get();
-                $_SESSION["id"] = $id[0]->user_id;
+                // echo $id;
+                 $_SESSION["id"] = $id[0]->user_id;
+                
                 $_SESSION["id_quyen"] = $id[0]->user_quyen;
                 $_SESSION["name"] = $id[0]->user_hoten;
+                // echo print_r($_SESSION);
                 if ($id[0]->user_quyen == 0) {
                     return Redirect::to('/thongtin-ungvien')->with('success', 'Đăng nhập thành công!');
                 }

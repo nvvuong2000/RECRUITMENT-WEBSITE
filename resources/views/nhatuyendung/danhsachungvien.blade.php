@@ -1,7 +1,9 @@
 @extends('home_layout')
 @section('home_content')
 <style>
-    .box {}
+    .careerfy-filterable-select:after {
+        content: none;
+    }
 </style>
 <div class="careerfy-wrapper">
     <!-- Main Content -->
@@ -22,7 +24,7 @@
                                     <li class="active"><a href="{{URL::to('/danh-sach-ung-tuyen')}}"> Danh sách ứng tuyển</a></li>
                                     <li><a href="{{URL::to('/dangtuyen-nhanvien')}}"> Đăng tuyển nhân viên</a></li>
                                     <li><a href="{{URL::to('/quanly-tintuyendung')}}">Quản lý tin tuyển dụng</a></li>
-                                   
+
                                 </ul>
                             </div>
                         </div>
@@ -49,14 +51,27 @@
         background: #2980b9;
         text-transform: uppercase;
         text-align: center">
-
-
-                                                                    <option value="1">Từ chối</option>
-                                                                    <option value="0">Chấp nhận</option>
-                                                                    <option selected value="2">Đang xử lí</option>
-                                                                    <option value="0" selected disabled hidden>Vui lòng chọn</option>
+                                                                    <!--  -->
+                                                                    <!-- echo "aaaaaaaaaaa ",$ -->
+                                                                    <option value="1" <?php if ($loai == 1) {
+                                                                                            echo "selected";
+                                                                                        } else {
+                                                                                        } ?>>Từ chối</option>
+                                                                    <option value="0" <?php if ($loai == 0) {
+                                                                                            echo "selected";
+                                                                                        } else {
+                                                                                        } ?>>Chấp nhận</option>
+                                                                    <option value="2" <?php if ($loai == 2) {
+                                                                                            echo "selected";
+                                                                                        } else {
+                                                                                        } ?>>Đang xử lí</option>
+                                                                    <option value="3" disabled <?php if ($loai==null) {
+                                                                                            echo "selected";
+                                                                                        } else {
+                                                                                        } ?>>Vui lòng chọn</option>
                                                                 </select>
-                                                                <input type="submit" value="Lọc" class="btn btn-sm btn-primary" />
+
+                                                                <button type="submit" class="btn btn-sm btn-primary "> Lọc <i class="fas fa-filter" style="color:white"></i> </button>
                                                             </div>
 
                                                         </form>
@@ -76,27 +91,30 @@
                                                         <a href="#" class="careerfy-resumes-thumb"><img src="{{$ct->link}}" alt=""></a>
                                                         <!-- <a> "{{$ct->ungvien_id}}"</a> -->
                                                         <figcaption>
-                                                            <span class="careerfy-resumes-subtitle">{{$ct->user_email}}</span>
                                                             <ul>
                                                                 <li>
-                                                                    <strong>Địa chỉ:</strong> {{$ct->diachi}}
+                                                                    <strong>Họ & tên:</strong>
                                                                 </li>
                                                                 <li>
-                                                                    <!-- <span> -->
-                                                                    <strong>Ngày nộp:</strong>
-                                                                    <br />
-                                                                    {{$ct->thoigiannop}}
-                                                                    <!-- </span> -->
-                                                                    <!-- <small>p.a minimum</small> -->
+                                                                    {{$ct->user_hoten}}
                                                                 </li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li>
+                                                                    <strong>Vị trí ứng tuyển:</strong>
+                                                                </li>
+                                                                <li>
+                                                                    {{$ct->TieuDe}}
+                                                                </li>
+
                                                             </ul>
                                                         </figcaption>
                                                     </figure>
                                                     <ul class="careerfy-resumes-options">
                                                         <!-- <li><a href="#"><i class="careerfy-icon careerfy-mail"></i> </a></li    -->
-                                                        
-                                                        <li><a href="{{URL::to('/thongtin-ungvien/'.$ct->ungvien_id)}}"><i class="careerfy-icon careerfy-mail"></i> Xem thông tin</a></li>
-                                                        <li><a href="{{$ct->link_cv}}">Xem CV</a></li>
+
+                                                        <li><a href="{{URL::to('/thongtin-ungvien/'.$ct->ungvien_id)}}"> <i class="far fa-eye"></i> Xem thông tin</a></li>
+                                                        <li><a href="{{$ct->link_cv}}"><i class="fas fa-download"></i>Xem CV</a></li>
 
                                                     </ul>
                                                     @else
@@ -104,27 +122,30 @@
                                                         <a href="#" class="careerfy-resumes-thumb"><img src="{{$ct->link}}" alt=""></a>
                                                         <!-- <a> "{{$ct->ungvien_id}}"</a> -->
                                                         <figcaption>
-                                                            <span class="careerfy-resumes-subtitle">{{$ct->user_email}}</span>
                                                             <ul>
                                                                 <li>
-                                                                    <strong>Địa chỉ:</strong> {{$ct->diachi}}
+                                                                    <strong>Họ & tên:</strong>
                                                                 </li>
                                                                 <li>
-                                                                    <!-- <span> -->
-                                                                    <strong>Ngày nộp:</strong>
-                                                                    <br />
-                                                                    {{$ct->thoigiannop}}
-                                                                    <!-- </span> -->
-                                                                    <!-- <small>p.a minimum</small> -->
+                                                                    {{$ct->user_hoten}}
                                                                 </li>
+                                                            </ul>
+                                                            <ul>
+                                                                <li>
+                                                                    <strong>Vị trí ứng tuyển:</strong>
+                                                                </li>
+                                                                <li>
+                                                                    {{$ct->TieuDe}}
+                                                                </li>
+
                                                             </ul>
                                                         </figcaption>
                                                     </figure>
                                                     <ul class="careerfy-resumes-options">
                                                         <!-- <li><a href="#"><i class="careerfy-icon careerfy-mail"></i> </a></li    -->
-                                                        <li><a data-toggle="modal" href="#myModal">Phản hồi</a></li>
-                                                        <li><a href="{{URL::to('/thongtin-ungvien/'.$ct->ungvien_id)}}"><i class="careerfy-icon careerfy-mail"></i> Xem thông tin</a></li>
-                                                        <li><a href="{{$ct->link_cv}}">Xem CV</a></li>
+                                                        <li><a data-toggle="modal" href="#myModal"><i class="fas fa-comments"></i>Phản hồi</a></li>
+                                                        <li><a href="{{URL::to('/thongtin-ungvien/'.$ct->ungvien_id)}}"><i class="far fa-eye"></i> Xem thông tin</a></li>
+                                                        <li><a href="{{$ct->link_cv}}"> <i class="fas fa-download"></i>Xem CV</a></li>
 
                                                         <div class="modal" id="myModal">
                                                             <div class="modal-dialog">
@@ -136,7 +157,7 @@
                                                                             <h2>Lời nhắn đến ứng viên!</h2>
                                                                             <form method="POST" action="{{URL::to('/comment')}}">
                                                                                 {{csrf_field()}}
-                                                                                <ul>
+                                                                                <ul>L
                                                                                     <li style="width:50%;" class="careerfy-contact-form-full">
                                                                                         <input type="radio" value="0" name="luachon" class="custom-control-input" checked> Chấp Nhận
                                                                                     <li style="width:50%;" class="careerfy-contact-form-full">

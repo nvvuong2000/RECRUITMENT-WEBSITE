@@ -43,11 +43,26 @@ class DoanhNghiepController extends Controller
 				'id_loainganhnghe'
 			)->where('doanhnghiep_id', $id)->get();
 			$user = DB::table('tbl:user')->where('tbl:user.user_id', $_SESSION["id"])->get();
+			if ($dn[0]->doanhnghiep_kinhdo != null && $dn[0]->doanhnghiep_vido != null) {
+				$_SESSION["kinhdo"] = $dn[0]->doanhnghiep_kinhdo;
+				$_SESSION["vido"] = $dn[0]->doanhnghiep_vido;
+			} else {
+				$_SESSION["kinhdo"] = null;
+				$_SESSION["vido"] = null;
+			}
 			return view('nhatuyendung.thongtinnhatuyendung')->with('dn', $dn)->with('user', $user)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);
+		
 		}
 	}
+	
 	public function RV_thongtindoanhnghiep($id)
+	
 	{
+		$check  = DB::table('tbl:user')->select('user_id')->where('user_id', $id)->get();
+		if (count($check)==0) {
+
+			return view('user.notfound');
+		}else{
 		if (!isset($_SESSION["id"])) {
 			$loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
 			$tinhthanh = DB::table('tbl:tinhthanh')->orderby('tinhthanh_id', 'desc')->get();
@@ -67,7 +82,8 @@ class DoanhNghiepController extends Controller
 				'doanhnghiep_email',
 				'id_loainganhnghe'
 			)->where('doanhnghiep_id', $id)->get();
-			return view('nhatuyendung.thongtinnhatuyendung')->with('dn', $dn)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);;
+		
+			 return view('nhatuyendung.thongtinnhatuyendung')->with('dn', $dn)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);;
 		} else {
 			$loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
 			$tinhthanh = DB::table('tbl:tinhthanh')->orderby('tinhthanh_id', 'desc')->get();
@@ -89,7 +105,10 @@ class DoanhNghiepController extends Controller
 			)->where('doanhnghiep_id', $id)->get();
 			$loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
 			$user = DB::table('tbl:user')->where('tbl:user.user_id', $id)->get();
+			$_SESSION["kinhdo"] = $dn[0]->doanhnghiep_kinhdo;
+			$_SESSION["vido"] = $dn[0]->doanhnghiep_vido;
 			return view('nhatuyendung.thongtinnhatuyendung')->with('dn', $dn)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe)->with('user', $user);
+		}
 		}
 	}
 	public function capnhatthongtindoanhnghiep()
@@ -141,10 +160,12 @@ class DoanhNghiepController extends Controller
 				$data['doanhnghiep_mota'] = $Request->mota;
 				$data['doanhnghiep_TinhThanhPho'] = $Request->tinhthanh;
 				$data['diachi'] = $Request->diachi;
+				$data['doanhnghiep_kinhdo'] = $Request->kinhdo;
+				$data['doanhnghiep_vido'] = $Request->vido;
 				$check = new DoanhNghiepController();
 				if (!$check->checkNull($Request->ten) || !$check->checkNull($Request->email) || !$check->checkNull($Request->sdt) || !$check->checkNull($Request->web) || !$check->checkNull($Request->diachi)) {
 					Session::put('message', 'Thông tin không được trống');
-					return Redirect::to('/capnhat-doanhnghiep')->with('message', Session::get('message'));
+					return Redirect::to('/dang-ki')->with('message', Session::get('message'));
 				}
 				// if (!$check->checkFullName($Request->ten)) {
 				// 	Session::put('message', 'Họ tên tài khoản không hợp lệ');
@@ -166,6 +187,8 @@ class DoanhNghiepController extends Controller
 				$data['doanhnghiep_mota'] = $Request->mota;
 				$data['doanhnghiep_TinhThanhPho'] = $Request->tinhthanh;
 				$data['diachi'] = $Request->diachi;
+				$data['doanhnghiep_kinhdo'] = $Request->kinhdo;
+				$data['doanhnghiep_vido'] = $Request->vido;
 				DB::table('tbl:doanhnghiep')->insert($data);
 				return Redirect::to('/thongtin-doanhnghiep')->with('success', 'Thêm thông tin  doanh nghiệp thành công!');
 			}
@@ -390,6 +413,7 @@ class DoanhNghiepController extends Controller
 		$gioitinh = DB::table('gioitinh')->orderby('id_gioitinh', 'desc')->get();
 		$kinhnghiem = DB::table('tbl:kinhnghiem')->orderby('kinhnghiem_id', 'desc')->get();
 		$loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
+		 $loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
 		$tinhthanh = DB::table('tbl:tinhthanh')->orderby('tinhthanh_id', 'desc')->get();
 		if (!isset($_SESSION["id"])) {
 			return Redirect::to('/');
@@ -404,9 +428,12 @@ class DoanhNghiepController extends Controller
 				->join('tbl:hinhthuclamviec', 'tbl:hinhthuclamviec.hinhThuc_id', '=', 'tbl:ungvien.hinhthuc_id')
 				->join('tbl:kinhnghiem', 'tbl:kinhnghiem.kinhnghiem_id', '=', 'tbl:ungvien.id_kinhnghiem')
 				->join('tbl:tinhthanh', 'tbl:tinhthanh.tinhthanh_id', '=', 'tbl:ungvien.thanhpho_id')
-				->join('tbl:bangcap', 'tbl:bangcap.bangcap_id', '=', 'tbl:ungvien.id_bangcap')->where('tbl:user.user_id', $_SESSION["id"])->get();
+				->join('tbl:bangcap', 'tbl:bangcap.bangcap_id', '=', 'tbl:ungvien.id_bangcap')
+				->where('tbl:user.user_id', $_SESSION["id"])->get();
 		}
-		return view('user.thongtinungvien', ['loainganhnghe' => $loainganhnghe])->with('gioitinh', $gioitinh)->with('loainghanhnghe', $loainganhnghe)->with('uv', $uv)->with('bangcap', $bangcap)->with('kinhnghiem', $kinhnghiem)->with('tinhthanh', $tinhthanh)->with('loainghanhnghe', $loainganhnghe);
+		//print_r($uv);
+		return view('user.thongtinungvien')->with('uv',$uv)->with('gioitinh',$gioitinh)->with('gioitinh', $gioitinh)->with('bangcap', $bangcap)->with('kinhnghiem', $kinhnghiem)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);
+	
 	}
 	public function luuungvien(Request $Request)
 	{
@@ -494,7 +521,11 @@ class DoanhNghiepController extends Controller
 	}
 	public function RV_thongtinungvien($id)
 	{
+		$check  = DB::table('tbl:user')->select('user_id')->where('user_id', $id)->get();
+		if (count($check) == 0) {
 
+			return view('user.notfound');
+		} else {
 		$gioitinh = DB::table('gioitinh')->orderby('id_gioitinh', 'desc')->get();
 
 
@@ -515,6 +546,11 @@ class DoanhNghiepController extends Controller
 			->join('tbl:bangcap', 'tbl:bangcap.bangcap_id', '=', 'tbl:ungvien.id_bangcap')->where('tbl:user.user_id', $id)->get();
 		// // print_r($uv);
 		return view('user.thongtinungvien')->with('uv', $uv)->with('gioitinh', $gioitinh)->with('bangcap', $bangcap)->with('kinhnghiem', $kinhnghiem)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);
+	}
+}
+	public function bando(){
+		
+		return view('nhatuyendung.bando');
 	}
 	public static function checkNull($str)
 	{
@@ -551,6 +587,7 @@ class DoanhNghiepController extends Controller
 		}
 		return false;
 	}
+
 	public function checkEmail($str)
 	{
 		session()->flush();
@@ -575,4 +612,6 @@ class DoanhNghiepController extends Controller
 		}
 		return false;
 	}
+	
+	
 }

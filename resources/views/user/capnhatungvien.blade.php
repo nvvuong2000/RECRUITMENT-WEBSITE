@@ -21,7 +21,7 @@
           <div class="careerfy-typo-wrap">
             <div class="careerfy-employer-dashboard-nav">
               <figure>
-                <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$uv[0]->link}}" alt=""></a>
+                 <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$uv[0]->link}}" alt=""></a> -->
                 <figcaption>
                   <form action="{{URL::to('/updateImg')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}

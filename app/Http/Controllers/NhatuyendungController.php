@@ -50,7 +50,8 @@ class NhatuyendungController extends Controller
             ->where('tbl:nophoso.nhatuyendung_id', $id)
             ->where('tbl:nophoso.trangthai', $loai)->get();
         $user = DB::table('tbl:user')->where('tbl:user.user_id', $_SESSION["id"])->get();
-        return view('nhatuyendung.danhsachungvien')->with('chitiet', $chitiet)->with('user',$user)->with('loai',$loai)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);;
+        // print_r($loai);
+        return view('nhatuyendung.danhsachungvien')->with('chitiet', $chitiet)->with('user',$user)->with('loai',$loai)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe)->with('loai',$loai);
         }
     }
     public function dangtuyen()

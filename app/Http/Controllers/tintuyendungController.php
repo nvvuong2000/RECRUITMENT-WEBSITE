@@ -71,22 +71,22 @@ class tintuyendungController extends Controller
                 $data = array();
                 // echo 'them ne';
                 $id =  $_SESSION["id"];
-                // $data['TieuDe'] = $Request->tieude;
-                // $data['hannophoso'] = $Request->thoihan;
+                $data['TieuDe'] = $Request->tieude;
+                $data['hannophoso'] = $Request->thoihan;
 
-                // $data['mota'] = $Request->mota;
-                // $data['email'] = $Request->email;
-                // $data['id_loainganhnghe'] = $Request->loai;
-                // $data['id_hinhthuclamviec'] = $Request->hinhthuc;
-                // $data['id_chucvu'] = $Request->chucvu;
-                // $data['gioitinh'] = $Request->gioitinh;
-                // $data['id_mucluong'] = $Request->mucluong;
-                // $data['id_kinhnghiem'] = $Request->kinhnghiem;
-                // $data['id_bangcap'] = $Request->bangcap;
-                // $data['soluong'] = $Request->soluong;
-                // $data['id_tinhthanh'] = $Request->tinhthanh;
-                // $data['diachi'] = $Request->diachi;
-                // $data['id_doanhnghiep'] = $id;
+                $data['mota'] = $Request->mota;
+                $data['email'] = $Request->email;
+                $data['id_loainganhnghe'] = $Request->loai;
+                $data['id_hinhthuclamviec'] = $Request->hinhthuc;
+                $data['id_chucvu'] = $Request->chucvu;
+                $data['gioitinh'] = $Request->gioitinh;
+                $data['id_mucluong'] = $Request->mucluong;
+                $data['id_kinhnghiem'] = $Request->kinhnghiem;
+                $data['id_bangcap'] = $Request->bangcap;
+                $data['soluong'] = $Request->soluong;
+                $data['id_tinhthanh'] = $Request->tinhthanh;
+                $data['diachi'] = $Request->diachi;
+                $data['id_doanhnghiep'] = $id;
                 DB::table('tintuyendung')->insert($data);
 
 
@@ -125,7 +125,11 @@ class tintuyendungController extends Controller
     }
     public function chitiettintd($id_tintuyendung)
     {
+        $check  = DB::table('tintuyendung')->select('id_tintuyendung')->where('id_tintuyendung', $id_tintuyendung)->get();
+        if (count($check) == 0) {
 
+            return view('user.notfound');
+        } else {
         
         $id_tintuyendung = $id_tintuyendung;
         $id_doanhnghiep = DB::table('tintuyendung')->select('id_doanhnghiep')->where('id_tintuyendung', $id_tintuyendung)->get();
@@ -167,6 +171,7 @@ class tintuyendungController extends Controller
      
         return view('nhatuyendung.chitiettintuyendung')->with('doanhnghiep', $doanhnghiep)->with('bangcap', $bangcap)->with('chucvu', $chucvu)->with('kinhnghiem', $kinhnghiem)->with('mucluong', $mucluong)->with('hinhthuclamviec', $hinhthuclamviec)->with('loainganhnghe', $loainganhnghe)->with('tinhthanh', $tinhthanh)->with('tieude', $tieude)->with('thoihan', $thoihan)->with('chitiet_tintd', $chitiet_tintd)->with('id_doanhnghiep', $id_doanhnghiep)->with('tendoanhnghiep', $tendoanhnghiep)->with('id_tintuyendung', $id_tintuyendung)->with('hienthi_tintd', $hienthi_tintd);
     }
+}
 
     public function suatintd($id_tintuyendung)
     {

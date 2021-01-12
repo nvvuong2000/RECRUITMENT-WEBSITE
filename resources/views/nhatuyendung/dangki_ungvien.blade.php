@@ -71,7 +71,7 @@
                     @if(session()->has('message'))
                     <div class="alert alert-info text-center " style="font-size:16px">
                         {{ session()->get('message') }} </div> @endif <div class="signup-content">
-                        <form method="POST" action="{{URL::to('/dang-ki-uv')}}" id="signup-form" class="signup-form">
+                        <form method="POST" action="{{URL::to('/dang-ki-uv')}}" id="signup-form" class="signup-form" style="height:auto">
                             {{csrf_field()}}
                             <!-- <a href="#" class="add-info-link"><i class="zmdi zmdi-chevron-right"></i>Thông tin cơ bản</a> -->
                             <div class="form-row">
@@ -87,7 +87,7 @@
                             <div class="form-row">
                                 <div class="form-group form-icon">
                                     <label for="birth_date">Ngày sinh</label>
-                                    <input type="date" class="form-input" name="user_ngaysinh" id="birth_date"  require />
+                                    <input type="date" class="form-input" name="user_ngaysinh" id="birth_date" require />
                                 </div>
                                 <div class="form-radio">
                                     <label for="gender">Giới tính</label>
@@ -104,6 +104,10 @@
                                 <label for="phone_number">Số điện thoại</label>
                                 <input type="tel" class="form-input" name="user_sdt" id="phone_number" require />
                             </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-input" name="user_email" id="email" require />
+                            </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="password">Mật khẩu</label>
@@ -117,11 +121,8 @@
                             <!-- <div class="form-text">
                                 <a href="#" class="add-info-link"><i class="zmdi zmdi-chevron-right"></i>Thông tin ứng viên</a>
                                 <div class="add_info"> -->
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-input" name="user_email" id="email" require />
-                            </div>
-                            <div class="form-group">
+
+                            <!-- <div class="form-group">
                                 <label for="diachi">Địa chỉ</label>
                                 <input type="text" class="form-input" name="user_diachi" id="email" require />
                             </div>
@@ -175,7 +176,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- </div> -->
                     </div>
                     <div class="form-group">

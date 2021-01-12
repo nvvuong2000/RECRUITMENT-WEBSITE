@@ -60,8 +60,10 @@ class HomeController extends Controller
         $hienthi_tintd = DB::table('tintuyendung')
             ->join('tbl:doanhnghiep', 'tbl:doanhnghiep.doanhnghiep_id', '=', 'tintuyendung.id_doanhnghiep')
             ->join('tbl:user', 'tbl:user.user_id', '=', 'tbl:doanhnghiep.doanhnghiep_id')
+            ->join('tbl:tinhthanh', 'tbl:tinhthanh.tinhthanh_id', '=', 'tintuyendung.id_tinhthanh')
             ->orderby('id_tintuyendung', 'desc')->get();
-        return view('nguoitimviec')->with('doanhnghiep', $doanhnghiep)->with('bangcap', $bangcap)->with('chucvu', $chucvu)->with('kinhnghiem', $kinhnghiem)->with('mucluong', $mucluong)->with('hinhthuclamviec', $hinhthuclamviec)->with('loainganhnghe', $loainganhnghe)->with('tinhthanh', $tinhthanh)->with('tieude', $tieude)->with('thoihan', $thoihan)->with('diachi', $diachi)->with('hienthi_tintd', $hienthi_tintd)->with('dsnghe', $dsnghe);
+            echo $hienthi_tintd;
+        // return view('nguoitimviec')->with('doanhnghiep', $doanhnghiep)->with('bangcap', $bangcap)->with('chucvu', $chucvu)->with('kinhnghiem', $kinhnghiem)->with('mucluong', $mucluong)->with('hinhthuclamviec', $hinhthuclamviec)->with('loainganhnghe', $loainganhnghe)->with('tinhthanh', $tinhthanh)->with('tieude', $tieude)->with('thoihan', $thoihan)->with('diachi', $diachi)->with('hienthi_tintd', $hienthi_tintd)->with('dsnghe', $dsnghe);
     }
     public function nguoituyendung()
     {
@@ -72,6 +74,8 @@ class HomeController extends Controller
     public function search(Request $request)
 
     {
+        $tinh = $request->tinh;
+        $nganh = $request->nganh;
         $keyword = $request->keyword;
         $doanhnghiep = DB::table('tbl:doanhnghiep')->orderby('doanhnghiep_id', 'desc')->get();
 
@@ -79,16 +83,16 @@ class HomeController extends Controller
         $loainganhnghe = DB::table('tbl:loainganhnghe')->orderby('nganhnghe_id', 'desc')->get();
         $tinhthanh = DB::table('tbl:tinhthanh')->orderby('tinhthanh_id', 'desc')->get();
         $chitiet_tintd = DB::table('tintuyendung')
-            ->join('tbl:loainganhnghe', 'tbl:loainganhnghe.nganhnghe_id', '=', 'tintuyendung.id_loainganhnghe')
-            ->join('tbl:doanhnghiep', 'tbl:doanhnghiep.doanhnghiep_id', '=', 'tintuyendung.id_doanhnghiep')
-            ->join('tbl:user', 'tbl:user.user_id', '=', 'tbl:doanhnghiep.doanhnghiep_id')
-            ->join('tbl:hinhthuclamviec', 'tbl:hinhthuclamviec.hinhThuc_id', '=', 'tintuyendung.id_hinhthuclamviec')
-            ->join(
-                'tbl:chucvu',
-                'tbl:chucvu.chucvu_id',
-                '=',
-                'tintuyendung.id_chucvu'
-            )
+        ->join('tbl:loainganhnghe', 'tbl:loainganhnghe.nganhnghe_id', '=', 'tintuyendung.id_loainganhnghe')
+        ->join('tbl:doanhnghiep', 'tbl:doanhnghiep.doanhnghiep_id', '=', 'tintuyendung.id_doanhnghiep')
+        ->join('tbl:user', 'tbl:user.user_id', '=', 'tbl:doanhnghiep.doanhnghiep_id')
+        ->join('tbl:hinhthuclamviec', 'tbl:hinhthuclamviec.hinhThuc_id', '=', 'tintuyendung.id_hinhthuclamviec')
+        ->join(
+            'tbl:chucvu',
+            'tbl:chucvu.chucvu_id',
+            '=',
+            'tintuyendung.id_chucvu'
+        )
             ->join('tbl:tinhthanh', 'tbl:tinhthanh.tinhthanh_id', '=', 'tintuyendung.id_tinhthanh')
             ->join(
                 'tbl:bangcap',
@@ -100,7 +104,7 @@ class HomeController extends Controller
         if ($keyword != '') {
             $chitiet_tintd = $chitiet_tintd
                 ->where('tieude', 'like', '%' . $keyword . '%')->get();
-        } elseif ($request->tinh != 0 && $request->nganh != 0 && $keyword != '') {
+        } elseif ($request->tinh != 0 && $request->nganh != 0) {
             $chitiet_tintd = $chitiet_tintd
                 ->where('id_tinhthanh', '=',  $request->tinh)
                 ->where('tintuyendung.id_loainganhnghe', '=', $request->nganh)->get();
@@ -115,7 +119,7 @@ class HomeController extends Controller
 
 
 
-        return view('timkiem')->with('chitiet_tintd', $chitiet_tintd)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe)->with('total', $total);
+        return view('timkiem')->with('chitiet_tintd', $chitiet_tintd)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe)->with('total', $total)->with('tinh', $tinh)->with('nganh', $nganh);
     }
     public function filter($id)
     {
@@ -149,6 +153,10 @@ class HomeController extends Controller
             )
             ->where('tintuyendung.id_loainganhnghe', $id)->get();
         return view('timkiem')->with('chitiet_tintd', $chitiet_tintd)->with('tinhthanh', $tinhthanh)->with('loainganhnghe', $loainganhnghe);
+    }
+    public function checkUserID($id){
+        $check  = DB::table('tbl:user')->select('user_id')->where('user_id', $id)->get();
+        echo $check;
     }
     public function changePassword(Request $request)
     {

@@ -18,7 +18,7 @@
 
 
               <figure>
-                <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$uv[0]->link}}" alt=""></a>
+                <a href="#" class="employer-dashboard-thumb"><img style="height:100%" src="{{$uv[0]->link}}" alt=""></a> -->
 
               </figure>
               <ul>
